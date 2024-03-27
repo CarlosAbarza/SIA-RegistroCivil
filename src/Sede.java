@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class Sede {
-    String codigo;
-    String ciudad;
-    String horaInicio;
-    String horaCierre;
-    Hashtable<String, Tramite> documentos;
+    private String codigo;
+    private String ciudad;
+    private String horaInicio;
+    private String horaCierre;
+    private Hashtable<String, Tramite> documentos;
 
     public Sede(String codigo, String ciudad) {
         this.codigo = codigo;
@@ -49,6 +49,10 @@ public class Sede {
 
     public Hashtable<String, Tramite> getDocumentos() {
         return documentos;
+    }
+    
+    public Tramite getDocumentos(String codigo) {
+        return documentos.get(codigo);
     }
 
     public void setDocumentos(Hashtable<String, Tramite> documentos) {

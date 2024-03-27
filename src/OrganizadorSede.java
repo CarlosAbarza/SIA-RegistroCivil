@@ -9,13 +9,13 @@ public class OrganizadorSede {
         this.mapa = new Hashtable<>();
     }
     
-    public Sede buscarCiudad(String name) {
-        return mapa.get(name);
+    public Sede getSede(String codigo) {
+        return mapa.get(codigo);
     }
     
     public void agregar(Sede nuevo) {
         listado.add(nuevo);
-        mapa.put(nuevo.codigo, nuevo);
+        mapa.put(nuevo.getCodigo(), nuevo);
     }
     
     public void agregar(String ciudad, Tramite documento) {
