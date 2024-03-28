@@ -5,14 +5,14 @@ public class Sede {
     private String ciudad;
     private String horaInicio;
     private String horaCierre;
-    private Hashtable<String, Tramite> documentos;
+    private ContenedorTramite documentos;
 
     public Sede(String codigo, String ciudad) {
         this.codigo = codigo;
         this.ciudad = ciudad;
         this.horaInicio = "8:30";
         this.horaCierre = "2:00";
-        this.documentos = new Hashtable<>();
+        this.documentos = new ContenedorTramite();
     }
 
     public String getCodigo() {
@@ -47,19 +47,23 @@ public class Sede {
         this.horaCierre = horaCierre;
     }
 
-    public Hashtable<String, Tramite> getDocumentos() {
+    public ContenedorTramite getDocumentos() {
         return documentos;
     }
     
     public Tramite getDocumentos(String codigo) {
-        return documentos.get(codigo);
+        return documentos.getTramite(codigo);
     }
 
-    public void setDocumentos(Hashtable<String, Tramite> documentos) {
+    /*public void setDocumentos(Hashtable<String, Tramite> documentos) {
         this.documentos = documentos;
-    }
+    }*/
     
     public void setDocumentos(Tramite documento) {
-        this.documentos.put(documento.getCodigo(), documento);
+        this.documentos.setTramite(documento);
+    }
+    
+    public void mostrarTramites() {
+        documentos.mostrar();
     }
 }

@@ -33,16 +33,16 @@ public class ProyectoSIA {
 
             switch(opcion.toLowerCase()) {
                 case "1" -> {
-                    System.out.println("Ingrese el codigo de la sede: ");
+                    System.out.println("Ingrese el codigo de la Sede: ");
                     auxCodS = lector.readLine();
-                    System.out.println("Ingrese el nombre de la sede: ");
+                    System.out.println("Ingrese el nombre de la Sede: ");
                     auxCityS = lector.readLine();
                     
                     if (registros.getSede(auxCodS) == null) {
                         registros.agregar(new Sede(auxCodS, auxCityS));
                     }
                     else {
-                        System.out.println("Ya existe una sede con ese codigo\n");
+                        System.out.println("Ya existe una Sede con ese codigo\n");
                     }
                 }
                 
@@ -73,7 +73,17 @@ public class ProyectoSIA {
                 }
                 
                 case "3" -> {
-                    // Mostrar todos los tramites realizados en la sede
+                    // Mostrar todos los tramites realizados en la Sede
+                    System.out.println("Ingrese el codigo de la Sede");
+                    auxCodS = lector.readLine();
+                    
+                    auxSede = registros.getSede(auxCodS);
+                    if (auxSede != null) {
+                        auxSede.mostrarTramites();
+                    }
+                    else {
+                        System.out.println("No existe una Sede con ese codigo");
+                    }
                 }
                 
                 case "4" -> {
