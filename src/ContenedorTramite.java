@@ -13,16 +13,26 @@ public class ContenedorTramite {
         return mapa.get(codigo);
     }
     
+    public ArrayList<Tramite> getTramite() {
+        return lista;
+    }
+    
     public void setTramite(Tramite nuevo) {
         mapa.put(nuevo.getCodigo(), nuevo);
         lista.add(nuevo);
     }
     
     public void mostrar() {
-        for (Tramite doc : lista) {
-            System.out.println("Codigo: " + doc.getCodigo());
-            System.out.println("Nombre: " + doc.getNombre());
-            System.out.println("Hora: " + doc.getHora() + "\n");
+        if (lista.isEmpty()) {
+            System.out.println("No se han ingresado tramites\n");
         }
+        else {
+            for (Tramite doc : lista) {
+                System.out.println("Codigo: " + doc.getCodigo());
+                System.out.println("Nombre: " + doc.getNombre());
+                System.out.println("Hora: " + doc.getHora() + "\n");
+            }
+        }
+        
     }
 }

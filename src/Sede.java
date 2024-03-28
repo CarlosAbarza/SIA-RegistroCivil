@@ -5,14 +5,14 @@ public class Sede {
     private String ciudad;
     private String horaInicio;
     private String horaCierre;
-    private ContenedorTramite documentos;
+    private ContenedorTramite documento;
 
     public Sede(String codigo, String ciudad) {
         this.codigo = codigo;
         this.ciudad = ciudad;
         this.horaInicio = "8:30";
         this.horaCierre = "2:00";
-        this.documentos = new ContenedorTramite();
+        this.documento = new ContenedorTramite();
     }
 
     public String getCodigo() {
@@ -47,23 +47,24 @@ public class Sede {
         this.horaCierre = horaCierre;
     }
 
-    public ContenedorTramite getDocumentos() {
-        return documentos;
+    public ContenedorTramite getDocumento() {
+        return documento;
     }
     
-    public Tramite getDocumentos(String codigo) {
-        return documentos.getTramite(codigo);
+    public Tramite getDocumento(String codigo) {
+        return documento.getTramite(codigo);
     }
 
-    /*public void setDocumentos(Hashtable<String, Tramite> documentos) {
-        this.documentos = documentos;
+    /*public void setDocumento(Hashtable<String, Tramite> documento) {
+        this.documento = documento;
     }*/
     
-    public void setDocumentos(Tramite documento) {
-        this.documentos.setTramite(documento);
+    public void setDocumento(Tramite documento) {
+        this.documento.setTramite(documento);
     }
     
     public void mostrarTramites() {
-        documentos.mostrar();
+        System.out.println("Tramites ingresados en la Sede " + codigo);
+        documento.mostrar();
     }
 }

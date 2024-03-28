@@ -20,6 +20,6 @@ public class OrganizadorSede {
     
     public void agregar(String ciudad, Tramite documento) {
         Sede temp = mapa.get(ciudad);
-        temp.setDocumentos(documento);
+        temp.setDocumento(documento);
     }
 }

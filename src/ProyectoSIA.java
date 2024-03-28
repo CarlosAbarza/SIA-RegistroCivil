@@ -1,4 +1,3 @@
-
 import java.io.*;
 
 
@@ -63,8 +62,8 @@ public class ProyectoSIA {
                         System.out.println("No se ha registrado la Sede\n");
                     }
                     else {
-                        if (auxSede.getDocumentos(auxCodT) == null) {
-                            auxSede.setDocumentos(new Tramite(auxNameT, auxCodT, auxHoraT));
+                        if (auxSede.getDocumento(auxCodT) == null) {
+                            auxSede.setDocumento(new Tramite(auxNameT, auxCodT, auxHoraT));
                         }
                         else {
                             System.out.println("Ya existe un tramite con ese codigo\n");
