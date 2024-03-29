@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 
 public class ProyectoSIA {
@@ -78,7 +79,16 @@ public class ProyectoSIA {
                     
                     auxSede = registros.getSede(auxCodS);
                     if (auxSede != null) {
-                        auxSede.mostrarTramites();
+                        // auxSede.mostrarTramites();
+                        
+                        Iterator<Tramite> it = auxSede.getDocumento();
+                        
+                        while (it.hasNext()) {
+                            auxTram = it.next();
+                            System.out.println("Codigo: " + auxTram.getCodigo());
+                            System.out.println("Nombre: " + auxTram.getNombre());
+                            System.out.println("Hora: " + auxTram.getHora() + "\n");
+                        }
                     }
                     else {
                         System.out.println("No existe una Sede con ese codigo");

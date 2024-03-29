@@ -47,8 +47,8 @@ public class Sede {
         this.horaCierre = horaCierre;
     }
 
-    public ContenedorTramite getDocumento() {
-        return documento;
+    public Iterator<Tramite> getDocumento() {
+        return documento.getTramite();
     }
     
     public Tramite getDocumento(String codigo) {

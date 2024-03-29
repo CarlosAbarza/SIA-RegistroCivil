@@ -13,8 +13,8 @@ public class ContenedorTramite {
         return mapa.get(codigo);
     }
     
-    public ArrayList<Tramite> getTramite() {
-        return lista;
+    public Iterator<Tramite> getTramite() {
+        return lista.iterator();
     }
     
     public void setTramite(Tramite nuevo) {
