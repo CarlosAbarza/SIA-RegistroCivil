@@ -13,13 +13,17 @@ public class OrganizadorSede {
         return mapa.get(codigo);
     }
     
-    public void agregar(Sede nuevo) {
+    public void setSede(Sede nuevo) {
         listado.add(nuevo);
         mapa.put(nuevo.getCodigo(), nuevo);
     }
     
-    public void agregar(String ciudad, Tramite documento) {
+    public boolean setTramite(String ciudad, Tramite documento) {
         Sede temp = mapa.get(ciudad);
+        if (temp == null) {
+            return false;
+        }
         temp.setDocumento(documento);
+        return true;
     }
 }

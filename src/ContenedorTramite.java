@@ -22,7 +22,7 @@ public class ContenedorTramite {
         lista.add(nuevo);
     }
     
-    public void mostrar() {
+    /*public void mostrar() {
         if (lista.isEmpty()) {
             System.out.println("No se han ingresado tramites\n");
         }
@@ -32,7 +32,6 @@ public class ContenedorTramite {
                 System.out.println("Nombre: " + doc.getNombre());
                 System.out.println("Hora: " + doc.getHora() + "\n");
             }
-        }
-        
-    }
+        } 
+    }*/
 }

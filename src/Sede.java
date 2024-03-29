@@ -63,8 +63,8 @@ public class Sede {
         this.documento.setTramite(documento);
     }
     
-    public void mostrarTramites() {
+    /*public void mostrarTramites() {
         System.out.println("Tramites ingresados en la Sede " + codigo);
         documento.mostrar();
-    }
+    }*/
 }

@@ -39,7 +39,7 @@ public class ProyectoSIA {
                     auxCityS = lector.readLine();
                     
                     if (registros.getSede(auxCodS) == null) {
-                        registros.agregar(new Sede(auxCodS, auxCityS));
+                        registros.setSede(new Sede(auxCodS, auxCityS));
                     }
                     else {
                         System.out.println("Ya existe una Sede con ese codigo\n");
@@ -58,7 +58,7 @@ public class ProyectoSIA {
                     System.out.println("Ingrese el codigo de la sede en que se realizo: ");
                     auxCodS = lector.readLine();
                     
-                    auxSede = registros.getSede(auxCodS);
+                    /*auxSede = registros.getSede(auxCodS);
                     if (auxSede == null) {
                         System.out.println("No se ha registrado la Sede\n");
                     }
@@ -69,6 +69,10 @@ public class ProyectoSIA {
                         else {
                             System.out.println("Ya existe un tramite con ese codigo\n");
                         }
+                    }*/
+                    
+                    if (!registros.setTramite(auxCodS, new Tramite(auxNameT, auxCodT, auxHoraT))) {
+                        System.out.println("No se ha registrado la Sede\n");
                     }
                 }
                 
