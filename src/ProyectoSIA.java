@@ -15,6 +15,8 @@ public class ProyectoSIA {
         Tramite auxTram;
         String auxCodS, auxCityS;
         String auxNameT, auxCodT, auxHoraT;
+        Iterator<Tramite> trams;
+        Iterator<Sede> sedes;
         
         while (bucle) {
             System.out.println("Menú");
@@ -22,8 +24,8 @@ public class ProyectoSIA {
             System.out.println("1. Agregar una Sede (Manual)");
             System.out.println("2. Agregar un tramite realizado (Manual)");
             System.out.println("3. Listar los tramites de una Sede");
-            // System.out.println("4. Prestar");
-            System.out.println("4. Salir\n");
+            System.out.println("4. Listar Sedes con sus tramites");
+            System.out.println("5. Salir\n");
 
             opcion = lector.readLine();
             if (opcion == null || opcion.isEmpty()) {
@@ -58,21 +60,12 @@ public class ProyectoSIA {
                     System.out.println("Ingrese el codigo de la sede en que se realizo: ");
                     auxCodS = lector.readLine();
                     
-                    /*auxSede = registros.getSede(auxCodS);
-                    if (auxSede == null) {
+                    int temp = registros.setTramite(auxCodS, new Tramite(auxNameT, auxCodT, auxHoraT));
+                    if (temp == 0) {
                         System.out.println("No se ha registrado la Sede\n");
                     }
-                    else {
-                        if (auxSede.getDocumento(auxCodT) == null) {
-                            auxSede.setDocumento(new Tramite(auxNameT, auxCodT, auxHoraT));
-                        }
-                        else {
-                            System.out.println("Ya existe un tramite con ese codigo\n");
-                        }
-                    }*/
-                    
-                    if (!registros.setTramite(auxCodS, new Tramite(auxNameT, auxCodT, auxHoraT))) {
-                        System.out.println("No se ha registrado la Sede\n");
+                    else if (temp == -1) {
+                        System.out.println("Ya existe un tramite con ese codigo\n");
                     }
                 }
                 
@@ -81,25 +74,52 @@ public class ProyectoSIA {
                     System.out.println("Ingrese el codigo de la Sede");
                     auxCodS = lector.readLine();
                     
-                    auxSede = registros.getSede(auxCodS);
-                    if (auxSede != null) {
-                        // auxSede.mostrarTramites();
-                        
-                        Iterator<Tramite> it = auxSede.getDocumento();
-                        
-                        while (it.hasNext()) {
-                            auxTram = it.next();
+                    
+                    trams = registros.getDocumento(auxCodS);
+                    if (trams.hasNext()) {
+                        while (trams.hasNext()) {
+                            auxTram = trams.next();
                             System.out.println("Codigo: " + auxTram.getCodigo());
                             System.out.println("Nombre: " + auxTram.getNombre());
                             System.out.println("Hora: " + auxTram.getHora() + "\n");
                         }
                     }
                     else {
-                        System.out.println("No existe una Sede con ese codigo");
+                        System.out.println("No existe una Sede con ese codigo\n\n");
                     }
                 }
                 
                 case "4" -> {
+                    // Listar todos los tramites de todas las Sedes
+                    sedes = registros.getSede();
+                    if (sedes.hasNext()) {
+                        while (sedes.hasNext()) {
+                            auxSede = sedes.next();
+                            System.out.println("Sede: " + auxSede.getCiudad());
+                            System.out.println("Codigo: " + auxSede.getCodigo());
+
+                            trams = auxSede.getDocumento();
+                            if (trams.hasNext()) {
+                                System.out.println("Tramites realizados:");
+                                while (trams.hasNext()) {
+                                    auxTram = trams.next();
+                                    System.out.println("  - Codigo: " + auxTram.getCodigo());
+                                    System.out.println("    Nombre: " + auxTram.getNombre());
+                                    System.out.println("    Hora: " + auxTram.getHora() + "\n");
+                                }
+                                System.out.println("");
+                            }
+                            else {
+                                System.out.println("No se han registrado tramites para la Sede\n");
+                            }
+                        }
+                    }
+                    else {
+                        System.out.println("No se han registrado Sedes\n\n");
+                    }
+                }
+                
+                case "5" -> {
                     System.out.println("Hasta luego");
                     bucle = false;
                 }

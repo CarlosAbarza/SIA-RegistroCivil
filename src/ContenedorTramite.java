@@ -17,9 +17,15 @@ public class ContenedorTramite {
         return lista.iterator();
     }
     
-    public void setTramite(Tramite nuevo) {
-        mapa.put(nuevo.getCodigo(), nuevo);
-        lista.add(nuevo);
+    public boolean setTramite(Tramite nuevo) {
+        if (mapa.get(nuevo.getCodigo()) == null) { 
+            mapa.put(nuevo.getCodigo(), nuevo);
+            lista.add(nuevo);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
     /*public void mostrar() {

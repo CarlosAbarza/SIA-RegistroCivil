@@ -13,17 +13,33 @@ public class OrganizadorSede {
         return mapa.get(codigo);
     }
     
+    public Iterator<Sede> getSede() {
+        return listado.iterator();
+    }
+    
     public void setSede(Sede nuevo) {
         listado.add(nuevo);
         mapa.put(nuevo.getCodigo(), nuevo);
     }
     
-    public boolean setTramite(String ciudad, Tramite documento) {
+    public int setTramite(String ciudad, Tramite documento) {
         Sede temp = mapa.get(ciudad);
         if (temp == null) {
-            return false;
+            return 0;
         }
-        temp.setDocumento(documento);
-        return true;
+        else if (temp.setDocumento(documento)) {
+            return 1;
+        }
+        else {
+            return -1;
+        }
+    }
+    
+    public Iterator<Tramite> getDocumento(String codigo) {
+        Sede aux = mapa.get(codigo);
+        if (aux != null) {
+            return aux.getDocumento();
+        }
+        return null;
     }
 }

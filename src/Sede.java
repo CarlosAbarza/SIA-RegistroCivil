@@ -59,8 +59,8 @@ public class Sede {
         this.documento = documento;
     }*/
     
-    public void setDocumento(Tramite documento) {
-        this.documento.setTramite(documento);
+    public boolean setDocumento(Tramite documento) {
+        return this.documento.setTramite(documento);
     }
     
     /*public void mostrarTramites() {
