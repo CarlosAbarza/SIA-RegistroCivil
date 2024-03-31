@@ -1,0 +1,6 @@
+codigoTramite,nombreTramite,hora,codigoSede
+520,CedulaIdentidad,9:00,7050
+220,Nacimiento,9:30,7050
+520,CedulaIdentidad,10:00,9035
+650,MatrimonioCivil,11:00,9035
+650,MatrimonioCivil,12:00,9045

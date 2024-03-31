@@ -18,6 +18,22 @@ public class ProyectoSIA {
         Iterator<Tramite> trams;
         Iterator<Sede> sedes;
         
+        // Precarga de datos
+        CSV csv = new CSV("sedes");
+        String linea;
+        csv.firstLine();
+        while ((linea = csv.nextLine()) != null) {
+            String[] elem = linea.split(",");
+            registros.setSede(new Sede(elem[1], elem[0]));
+        }
+        
+        csv = new CSV("tramitesPrecargados");
+        csv.firstLine();
+        while ((linea = csv.nextLine()) != null) {
+            String[] elem = linea.split(",");
+            registros.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[1]));
+        }
+        
         while (bucle) {
             System.out.println("Menú");
             System.out.println("Que desea hacer?");
