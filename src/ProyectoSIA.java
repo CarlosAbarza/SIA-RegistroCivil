@@ -31,7 +31,7 @@ public class ProyectoSIA {
         csv.firstLine();
         while ((linea = csv.nextLine()) != null) {
             String[] elem = linea.split(",");
-            registros.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[1]));
+            registros.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]));
         }
         
         while (bucle) {
