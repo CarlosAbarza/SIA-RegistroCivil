@@ -1,5 +1,14 @@
-# SIA-RegistroCivil
+# SIA Registro Civil
 
-Descargue el repositorio en formato ZIP y luego extraiga los archivos.
-Abra netbeans y seleccione la opcion abrir proyecto, busque la carpeta con el nombre "SIA-RegistroCivil".
-Finalmente ejecute el programa y ya estara funcionando por consola
+## Requisitos
+
+- Java JDK 22
+- NetBeans 21
+
+## Instalación
+
+Descarga los archivos en formato ZIP, luego extrae los archivos
+Abre Netbeans, selecciona abrir proyecto y busca la carpeta con el nombre "SIA-RegistroCivil". Abre la carpeta src y selecciona el archivo "ProyectoSIA".
+
+## Uso
+Selecciona ejecutar y se estara ejecutando por consola
