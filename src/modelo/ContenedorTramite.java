@@ -1,3 +1,6 @@
+package modelo;
+
+import modelo.Tramite;
 import java.util.*;
 
 public class ContenedorTramite {

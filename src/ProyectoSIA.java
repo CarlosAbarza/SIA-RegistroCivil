@@ -1,3 +1,6 @@
+import modelo.OrganizadorSede;
+import modelo.Tramite;
+import modelo.Sede;
 import java.io.*;
 import java.util.*;
 

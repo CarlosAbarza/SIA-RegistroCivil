@@ -1,3 +1,7 @@
+package modelo;
+
+import modelo.Tramite;
+import modelo.Sede;
 import java.util.*;
 
 public class OrganizadorSede {

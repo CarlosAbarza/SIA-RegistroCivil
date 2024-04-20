@@ -1,3 +1,5 @@
+package modelo;
+
 public class Tramite {
     private String nombre;
     private String codigo;
