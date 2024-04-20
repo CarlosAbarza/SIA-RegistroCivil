@@ -1,3 +1,4 @@
+// <<<<<<< HEAD
 import modelo.OrganizadorSede;
 import modelo.Tramite;
 import modelo.Sede;
@@ -20,6 +21,22 @@ public class ProyectoSIA {
         String auxNameT, auxCodT, auxHoraT;
         Iterator<Tramite> trams;
         Iterator<Sede> sedes;
+        
+        // Precarga de datos
+        CSV csv = new CSV("sedes");
+        String linea;
+        csv.firstLine();
+        while ((linea = csv.nextLine()) != null) {
+            String[] elem = linea.split(",");
+            registros.setSede(new Sede(elem[1], elem[0]));
+        }
+        
+        csv = new CSV("tramitesPrecargados");
+        csv.firstLine();
+        while ((linea = csv.nextLine()) != null) {
+            String[] elem = linea.split(",");
+            registros.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]));
+        }
         
         while (bucle) {
             System.out.println("Menú");
@@ -77,14 +94,18 @@ public class ProyectoSIA {
                     System.out.println("Ingrese el codigo de la Sede");
                     auxCodS = lector.readLine();
                     
-                    
-                    trams = registros.getDocumento(auxCodS);
-                    if (trams.hasNext()) {
-                        while (trams.hasNext()) {
-                            auxTram = trams.next();
-                            System.out.println("Codigo: " + auxTram.getCodigo());
-                            System.out.println("Nombre: " + auxTram.getNombre());
-                            System.out.println("Hora: " + auxTram.getHora() + "\n");
+                    if (registros.getSede(auxCodS) != null) {
+                        trams = registros.getDocumento(auxCodS);
+                        if (trams.hasNext()) {
+                            while (trams.hasNext()) {
+                                auxTram = trams.next();
+                                System.out.println("Codigo: " + auxTram.getCodigo());
+                                System.out.println("Nombre: " + auxTram.getNombre());
+                                System.out.println("Hora: " + auxTram.getHora() + "\n");
+                            }
+                        }
+                        else {
+                            System.out.println("No se han registrado tramites en esta Sede");
                         }
                     }
                     else {

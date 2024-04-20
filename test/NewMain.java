@@ -20,8 +20,6 @@ public class NewMain {
         
         Conexion cc = new Conexion(mm, opc1);
         
-        cc.prueba();
-        
     }
     
     

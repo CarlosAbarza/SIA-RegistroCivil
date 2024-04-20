@@ -25,11 +25,6 @@ public class Conexion implements MouseListener{
         this.opc1.getAcept().addMouseListener(this);
     }
     
-    public void prueba() {
-        menu.setVisible(true);
-        System.out.println(opc1.getCodigo().getText());
-    }
-    
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == menu.getOpc1()) {
