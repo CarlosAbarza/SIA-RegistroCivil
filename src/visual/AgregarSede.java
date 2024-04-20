@@ -111,8 +111,16 @@ public class AgregarSede extends javax.swing.JFrame {
         return codigo;
     }
     
+    public void setCodigo(String tt) {
+        codigo.setText(tt);
+    }
+    
     public JTextField getCity() {
         return city;
+    }
+    
+    public void setCity(String tt) {
+        city.setText(tt);
     }
     
     public JButton getAcept() {

@@ -12,13 +12,11 @@ import javax.swing.JButton;
  */
 public class Menu extends javax.swing.JFrame {
 
-    private AgregarSede opc1;
     /**
      * Creates new form Menu
      */
-    public Menu(AgregarSede opc1) {
+    public Menu() {
         initComponents();
-        this.opc1 = opc1;
         
         
     }
@@ -34,6 +32,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         agregarSede = new javax.swing.JButton();
+        agregarTramite = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,6 +46,8 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        agregarTramite.setText("2. AgregarTramite");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,8 +59,10 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
-                        .addComponent(agregarSede)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregarTramite)
+                            .addComponent(agregarSede))))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,18 +71,23 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(agregarSede)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(agregarTramite)
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarSedeActionPerformed
-        //opc1.setVisible(true);
     }//GEN-LAST:event_agregarSedeActionPerformed
 
     public JButton getOpc1() {
         return agregarSede;
+    }
+    
+    public JButton getOpc2() {
+        return agregarTramite;
     }
     
     /**
@@ -119,6 +127,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarSede;
+    private javax.swing.JButton agregarTramite;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
