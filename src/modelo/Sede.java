@@ -49,24 +49,19 @@ public class Sede {
         this.horaCierre = horaCierre;
     }
 
-    public Iterator<Tramite> getDocumento() {
-        return documento.getTramite();
+    public Tramite getDocumento(int i) {
+        return documento.getTramite(i);
     }
     
     public Tramite getDocumento(String codigo) {
         return documento.getTramite(codigo);
     }
-
-    /*public void setDocumento(Hashtable<String, Tramite> documento) {
-        this.documento = documento;
-    }*/
     
     public boolean setDocumento(Tramite documento) {
         return this.documento.setTramite(documento);
     }
     
-    /*public void mostrarTramites() {
-        System.out.println("Tramites ingresados en la Sede " + codigo);
-        documento.mostrar();
-    }*/
+    public int getCantDocumento() {
+        return documento.getLargo();
+    }
 }

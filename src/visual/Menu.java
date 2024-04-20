@@ -33,6 +33,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         agregarSede = new javax.swing.JButton();
         agregarTramite = new javax.swing.JButton();
+        listarTramitesDeSede = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +49,8 @@ public class Menu extends javax.swing.JFrame {
 
         agregarTramite.setText("2. AgregarTramite");
 
+        listarTramitesDeSede.setText("3. Listar Tramites de una Sede");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,7 +65,11 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(agregarTramite)
                             .addComponent(agregarSede))))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 100, Short.MAX_VALUE)
+                .addComponent(listarTramitesDeSede)
+                .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,7 +80,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(agregarSede)
                 .addGap(18, 18, 18)
                 .addComponent(agregarTramite)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(listarTramitesDeSede)
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,6 +97,10 @@ public class Menu extends javax.swing.JFrame {
     
     public JButton getOpc2() {
         return agregarTramite;
+    }
+    
+    public JButton getOpc3() {
+        return listarTramitesDeSede;
     }
     
     /**
@@ -129,5 +142,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton agregarSede;
     private javax.swing.JButton agregarTramite;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton listarTramitesDeSede;
     // End of variables declaration//GEN-END:variables
 }

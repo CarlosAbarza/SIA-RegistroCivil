@@ -38,7 +38,6 @@ public class AgregarSede extends javax.swing.JFrame {
 
         jLabel2.setText("Código:");
 
-        codigo.setText("prueba");
         codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoActionPerformed(evt);

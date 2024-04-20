@@ -16,8 +16,8 @@ public class ContenedorTramite {
         return mapa.get(codigo);
     }
     
-    public Iterator<Tramite> getTramite() {
-        return lista.iterator();
+    public Tramite getTramite(int i) {
+        return lista.get(i);
     }
     
     public boolean setTramite(Tramite nuevo) {
@@ -31,16 +31,7 @@ public class ContenedorTramite {
         }
     }
     
-    /*public void mostrar() {
-        if (lista.isEmpty()) {
-            System.out.println("No se han ingresado tramites\n");
-        }
-        else {
-            for (Tramite doc : lista) {
-                System.out.println("Codigo: " + doc.getCodigo());
-                System.out.println("Nombre: " + doc.getNombre());
-                System.out.println("Hora: " + doc.getHora() + "\n");
-            }
-        } 
-    }*/
+    public int getLargo() {
+        return lista.size();
+    }
 }

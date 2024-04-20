@@ -13,8 +13,6 @@ public class OrganizadorSede {
         this.mapa = new Hashtable<>();
     }
     
-    
-    
     public Sede getSede(String codigo) {
         return mapa.get(codigo);
     }
@@ -61,11 +59,19 @@ public class OrganizadorSede {
         }
     }
     
-    public Iterator<Tramite> getDocumento(String codigo) {
+    public Tramite getDocumento(String codigo, int i) {
         Sede aux = mapa.get(codigo);
         if (aux != null) {
-            return aux.getDocumento();
+            return aux.getDocumento(i);
         }
         return null;
+    }
+    
+    public int getCantDocumento(String codigo) {
+        Sede ss = mapa.get(codigo);
+        if (ss != null){
+            return ss.getCantDocumento();
+        }
+        return -1;
     }
 }
