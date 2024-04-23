@@ -90,7 +90,7 @@ public class ProyectoSIA {
                     }
                 }
                 
-                case "3" -> {
+                /*case "3" -> {
                     // Mostrar todos los tramites realizados en la Sede
                     System.out.println("Ingrese el codigo de la Sede");
                     auxCodS = lector.readLine();
@@ -112,9 +112,9 @@ public class ProyectoSIA {
                     else {
                         System.out.println("No existe una Sede con ese codigo\n\n");
                     }
-                }
+                }*/
                 
-                case "4" -> {
+                /*case "4" -> {
                     // Listar todos los tramites de todas las Sedes
                     sedes = registros.getSede();
                     if (sedes.hasNext()) {
@@ -142,7 +142,7 @@ public class ProyectoSIA {
                     else {
                         System.out.println("No se han registrado Sedes\n\n");
                     }
-                }
+                }*/
                 
                 case "5" -> {
                     System.out.println("Hasta luego");
