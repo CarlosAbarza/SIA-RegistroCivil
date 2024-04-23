@@ -90,6 +90,7 @@ public class Conexion implements MouseListener{
                 opc3.mostrarError();
             }
             else {
+                opc3.setListado();
                 opc3.mostrarListado();
                 for (int i = 0; i < ss.getCantDocumento(); i++) {
                     Tramite tt = ss.getDocumento(i);
