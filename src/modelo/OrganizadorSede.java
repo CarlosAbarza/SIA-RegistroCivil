@@ -21,6 +21,14 @@ public class OrganizadorSede {
         return listado.iterator();
     }
     
+    public int getCantidadSede() {
+        return listado.size();
+    }
+    
+    public Sede getSede(int i) {
+        return listado.get(i);
+    }
+    
     public void setSede(String codigo, String ciudad) {
         Sede ss = new Sede(codigo, ciudad);
         mapa.put(codigo, ss);

@@ -40,8 +40,11 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
-              <Component id="listarTramitesDeSede" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="93" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="listarSedesTramite" min="-2" max="-2" attributes="0"/>
+                  <Component id="listarTramitesDeSede" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -57,7 +60,9 @@
               <Component id="agregarTramite" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="listarTramitesDeSede" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="139" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="listarSedesTramite" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="98" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,6 +92,11 @@
     <Component class="javax.swing.JButton" name="listarTramitesDeSede">
       <Properties>
         <Property name="text" type="java.lang.String" value="3. Listar Tramites de una Sede"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="listarSedesTramite">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="4. Listar Sedes con sus Tramites"/>
       </Properties>
     </Component>
   </SubComponents>

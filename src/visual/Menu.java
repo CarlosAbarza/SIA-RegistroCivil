@@ -34,6 +34,7 @@ public class Menu extends javax.swing.JFrame {
         agregarSede = new javax.swing.JButton();
         agregarTramite = new javax.swing.JButton();
         listarTramitesDeSede = new javax.swing.JButton();
+        listarSedesTramite = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +52,8 @@ public class Menu extends javax.swing.JFrame {
 
         listarTramitesDeSede.setText("3. Listar Tramites de una Sede");
 
+        listarSedesTramite.setText("4. Listar Sedes con sus Tramites");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,8 +70,10 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(agregarSede))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 100, Short.MAX_VALUE)
-                .addComponent(listarTramitesDeSede)
+                .addGap(0, 93, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listarSedesTramite)
+                    .addComponent(listarTramitesDeSede))
                 .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
@@ -82,14 +87,16 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(agregarTramite)
                 .addGap(18, 18, 18)
                 .addComponent(listarTramitesDeSede)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(listarSedesTramite)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarSedeActionPerformed
-        setVisible(false);
+
     }//GEN-LAST:event_agregarSedeActionPerformed
 
     public JButton getOpc1() {
@@ -102,6 +109,10 @@ public class Menu extends javax.swing.JFrame {
     
     public JButton getOpc3() {
         return listarTramitesDeSede;
+    }
+    
+    public JButton getOpc4() {
+        return listarSedesTramite;
     }
     
     /**
@@ -143,6 +154,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton agregarSede;
     private javax.swing.JButton agregarTramite;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton listarSedesTramite;
     private javax.swing.JButton listarTramitesDeSede;
     // End of variables declaration//GEN-END:variables
 }

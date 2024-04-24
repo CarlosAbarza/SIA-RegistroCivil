@@ -32,10 +32,13 @@ public class Conexion implements MouseListener{
         this.menu.getOpc1().addMouseListener(this);
         this.menu.getOpc2().addMouseListener(this);
         this.menu.getOpc3().addMouseListener(this);
+        this.menu.getOpc4().addMouseListener(this);
         this.opc1.getAcept().addMouseListener(this);
         this.opc2.getAcept().addMouseListener(this);
         this.opc3.getBuscar().addMouseListener(this);
         this.opc3.getVolver().addMouseListener(this);
+        this.opc4.getVolver().addMouseListener(this);
+        
         
         
         this.menu.setVisible(true);
@@ -59,11 +62,39 @@ public class Conexion implements MouseListener{
         opc3.limpiar();
     }
     
+    public void limpiarOpc4() {
+        opc4.limpiar();
+    }
+    
+    public void mostrarTramiteOpc3(Sede ss) {
+        opc3.mostrarListado();
+        for (int i = 0; i < ss.getCantDocumento(); i++) {
+            Tramite tt = ss.getDocumento(i);
+            opc3.setListado("Codigo: " + tt.getCodigo() + "\n");
+            opc3.setListado("Nombre: " + tt.getNombre() + "\n");
+            opc3.setListado("Hora: " + tt.getHora() + "\n\n");
+        }
+    }
+    
+    public void mostrarSedesTramite() {
+        for (int i = 0; i < sedes.getCantidadSede(); i++) {
+            Sede ss = sedes.getSede(i);
+            opc4.setLista("Ciudad: " + ss.getCiudad() + "\n");
+            opc4.setLista("Código: " + ss.getCodigo() + "\n");
+            for (int j = 0; j < ss.getCantDocumento(); j++) {
+                Tramite tt = ss.getDocumento(j);
+                opc4.setLista("    - Nombre: " + tt.getNombre());
+                opc4.setLista("    - Codigo: " + tt.getCodigo() + "\n");
+                opc4.setLista("    - Hora: " + tt.getHora() + "\n\n");
+            }
+        }
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         // Abre la ventana para agregar Sede
         if (e.getSource() == menu.getOpc1()) {
-//            menu.setVisible(false);
+            menu.setVisible(false);
             opc1.setVisible(true);
         }
         // Cierra la ventana
@@ -102,13 +133,7 @@ public class Conexion implements MouseListener{
                 opc3.mostrarError();
             }
             else {
-                opc3.mostrarListado();
-                for (int i = 0; i < ss.getCantDocumento(); i++) {
-                    Tramite tt = ss.getDocumento(i);
-                    opc3.setListado("Codigo: " + tt.getCodigo() + "\n");
-                    opc3.setListado("Nombre: " + tt.getNombre() + "\n");
-                    opc3.setListado("Hora: " + tt.getHora() + "\n\n");
-                }
+                mostrarTramiteOpc3(ss);
             }
         }
         // Cierra la ventana
@@ -116,6 +141,19 @@ public class Conexion implements MouseListener{
             opc3.setVisible(false);
             menu.setVisible(true);
             limpiarOpc3();
+        }
+        
+        // Abre la ventana para listar todo
+        else if (e.getSource() == menu.getOpc4()) {
+            menu.setVisible(false);
+            opc4.setVisible(true);
+            mostrarSedesTramite();
+        }
+        // Cierra la ventana
+        else if (e.getSource() == opc4.getVolver()) {
+            opc4.setVisible(false);
+            menu.setVisible(true);
+            limpiarOpc4();
         }
     }
     
