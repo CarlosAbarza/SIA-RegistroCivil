@@ -94,26 +94,26 @@ public class Conexion implements MouseListener{
     public void mouseClicked(MouseEvent e) {
         // Abre la ventana para agregar Sede
         if (e.getSource() == menu.getOpc1()) {
-            menu.setVisible(false);
             opc1.setVisible(true);
+            menu.setVisible(false);
         }
         // Cierra la ventana
         else if (e.getSource() == opc1.getAcept()) {
-            opc1.setVisible(false);
             menu.setVisible(true);
+            opc1.setVisible(false);
             sedes.setSede(opc1.getCodigo().getText(), opc1.getCity().getText());
             limpiarOpc1();
         }
         
         // Abre la ventana para agregar Tramite
         else if (e.getSource() == menu.getOpc2()) {
-            menu.setVisible(false);
             opc2.setVisible(true);
+            menu.setVisible(false);
         }
         // Cierra la ventana
         else if (e.getSource() == opc2.getAcept()) {
-            opc2.setVisible(false);
             menu.setVisible(true);
+            opc2.setVisible(false);
             sedes.setTramite(opc2.getCodigoS().getText(), opc2.getNombre().getText(),
                     opc2.getCodigoT().getText(), opc2.getHora().getText());
             limpiarOpc2();
@@ -121,8 +121,8 @@ public class Conexion implements MouseListener{
         
         // Abre la ventana para listar los Tramites de una Sede
         else if (e.getSource() == menu.getOpc3()) {
-            menu.setVisible(false);
             opc3.setVisible(true);
+            menu.setVisible(false);
         }
         // Busca la Sede
         else if (e.getSource() == opc3.getBuscar()) {
@@ -138,21 +138,21 @@ public class Conexion implements MouseListener{
         }
         // Cierra la ventana
         else if (e.getSource() == opc3.getVolver()) {
-            opc3.setVisible(false);
             menu.setVisible(true);
+            opc3.setVisible(false);
             limpiarOpc3();
         }
         
         // Abre la ventana para listar todo
         else if (e.getSource() == menu.getOpc4()) {
-            menu.setVisible(false);
             opc4.setVisible(true);
+            menu.setVisible(false);
             mostrarSedesTramite();
         }
         // Cierra la ventana
         else if (e.getSource() == opc4.getVolver()) {
-            opc4.setVisible(false);
             menu.setVisible(true);
+            opc4.setVisible(false);
             limpiarOpc4();
         }
     }
