@@ -18,14 +18,16 @@ public class Conexion implements MouseListener{
     private AgregarSede opc1;
     private AgregarTramite opc2;
     private ListarTramitesDeSede opc3;
+    private ListarSedesTramite opc4;
     
     public Conexion(Menu menu, AgregarSede opc1, AgregarTramite opc2, 
-            ListarTramitesDeSede opc3) {
+            ListarTramitesDeSede opc3, ListarSedesTramite opc4) {
         this.sedes = new OrganizadorSede();
         this.menu = menu;
         this.opc1 = opc1;
         this.opc2 = opc2;
         this.opc3 = opc3;
+        this.opc4 = opc4;
         
         this.menu.getOpc1().addMouseListener(this);
         this.menu.getOpc2().addMouseListener(this);
@@ -33,27 +35,35 @@ public class Conexion implements MouseListener{
         this.opc1.getAcept().addMouseListener(this);
         this.opc2.getAcept().addMouseListener(this);
         this.opc3.getBuscar().addMouseListener(this);
+        this.opc3.getVolver().addMouseListener(this);
+        
         
         this.menu.setVisible(true);
     }
     
-    public void limpiarAgregarS() {
+    public void limpiarOpc1() {
         opc1.setCodigo("");
         opc1.setCity("");
     }
     
-    public void limpiarAgregarT() {
+    public void limpiarOpc2() {
         opc2.setCodigoT("");
         opc2.setNombre("");
         opc2.setHora("");
         opc2.setCodigoS("");
     }
     
+    public void limpiarOpc3() {
+        opc3.setListado();
+        opc3.setCodigo("");
+        opc3.limpiar();
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         // Abre la ventana para agregar Sede
         if (e.getSource() == menu.getOpc1()) {
-            menu.setVisible(false);
+//            menu.setVisible(false);
             opc1.setVisible(true);
         }
         // Cierra la ventana
@@ -61,7 +71,7 @@ public class Conexion implements MouseListener{
             opc1.setVisible(false);
             menu.setVisible(true);
             sedes.setSede(opc1.getCodigo().getText(), opc1.getCity().getText());
-            limpiarAgregarS();
+            limpiarOpc1();
         }
         
         // Abre la ventana para agregar Tramite
@@ -75,7 +85,7 @@ public class Conexion implements MouseListener{
             menu.setVisible(true);
             sedes.setTramite(opc2.getCodigoS().getText(), opc2.getNombre().getText(),
                     opc2.getCodigoT().getText(), opc2.getHora().getText());
-            limpiarAgregarT();
+            limpiarOpc2();
         }
         
         // Abre la ventana para listar los Tramites de una Sede
@@ -86,11 +96,12 @@ public class Conexion implements MouseListener{
         // Busca la Sede
         else if (e.getSource() == opc3.getBuscar()) {
             Sede ss = sedes.getSede(opc3.getCodigoS().getText());
+            opc3.limpiar();
+            opc3.setListado();
             if (ss == null) {
                 opc3.mostrarError();
             }
             else {
-                opc3.setListado();
                 opc3.mostrarListado();
                 for (int i = 0; i < ss.getCantDocumento(); i++) {
                     Tramite tt = ss.getDocumento(i);
@@ -99,6 +110,12 @@ public class Conexion implements MouseListener{
                     opc3.setListado("Hora: " + tt.getHora() + "\n\n");
                 }
             }
+        }
+        // Cierra la ventana
+        else if (e.getSource() == opc3.getVolver()) {
+            opc3.setVisible(false);
+            menu.setVisible(true);
+            limpiarOpc3();
         }
     }
     

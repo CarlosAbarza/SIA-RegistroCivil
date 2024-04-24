@@ -89,6 +89,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarSedeActionPerformed
+        setVisible(false);
     }//GEN-LAST:event_agregarSedeActionPerformed
 
     public JButton getOpc1() {
