@@ -1,19 +1,20 @@
 package modelo;
 
+import java.time.LocalTime;
 import java.util.*;
 
 public class Sede {
     private String codigo;
     private String ciudad;
-    private String horaInicio;
-    private String horaCierre;
+    private LocalTime horaInicio;
+    private LocalTime horaCierre;
     private ContenedorTramite documento;
 
     public Sede(String codigo, String ciudad) {
         this.codigo = codigo;
         this.ciudad = ciudad;
-        this.horaInicio = "8:30";
-        this.horaCierre = "2:00";
+        this.horaInicio = LocalTime.parse("08:30:00");
+        this.horaCierre = LocalTime.parse("14:00:00");
         this.documento = new ContenedorTramite();
     }
 
@@ -33,20 +34,20 @@ public class Sede {
         this.ciudad = ciudad;
     }
 
-    public String getHoraInicio() {
+    public LocalTime getHoraInicio() {
         return horaInicio;
     }
 
     public void setHoraInicio(String horaInicio) {
-        this.horaInicio = horaInicio;
+        this.horaInicio = LocalTime.parse(horaInicio);
     }
 
-    public String getHoraCierre() {
+    public LocalTime getHoraCierre() {
         return horaCierre;
     }
 
     public void setHoraCierre(String horaCierre) {
-        this.horaCierre = horaCierre;
+        this.horaCierre = LocalTime.parse(horaCierre);
     }
 
     public Tramite getDocumento(int i) {

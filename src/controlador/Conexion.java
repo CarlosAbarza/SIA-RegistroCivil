@@ -57,6 +57,7 @@ public class Conexion implements MouseListener{
                 String[] elem = linea.split(",");
                 sedes.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]));
             }
+            
         } 
         catch(FileNotFoundException e) {
             System.out.println("Archivo no encontrado");
@@ -96,7 +97,7 @@ public class Conexion implements MouseListener{
             Tramite tt = ss.getDocumento(i);
             opc3.setListado("Codigo: " + tt.getCodigo() + "\n");
             opc3.setListado("Nombre: " + tt.getNombre() + "\n");
-            opc3.setListado("Hora: " + tt.getHora() + "\n\n");
+            opc3.setListado("Fecha: " + tt.getHora() + "\n\n");
         }
     }
     
@@ -109,7 +110,7 @@ public class Conexion implements MouseListener{
                 Tramite tt = ss.getDocumento(j);
                 opc4.setLista("    - Nombre: " + tt.getNombre() + "\n");
                 opc4.setLista("    - Codigo: " + tt.getCodigo() + "\n");
-                opc4.setLista("    - Hora: " + tt.getHora() + "\n\n");
+                opc4.setLista("    - Fecha: " + tt.getHora() + "\n\n");
             }
         }
     }

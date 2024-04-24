@@ -1,14 +1,16 @@
 package modelo;
 
+import java.time.LocalDateTime;
+
 public class Tramite {
     private String nombre;
     private String codigo;
-    private String hora;
+    private LocalDateTime hora;
 
     public Tramite(String nombre, String codigo, String hora) {
         this.nombre = nombre;
         this.codigo = codigo;
-        this.hora = hora;
+        this.hora = LocalDateTime.parse(hora);
     }
 
     public String getNombre() {
@@ -27,11 +29,11 @@ public class Tramite {
         this.codigo = codigo;
     }
 
-    public String getHora() {
+    public LocalDateTime getHora() {
         return hora;
     }
 
     public void setHora(String hora) {
-        this.hora = hora;
+        this.hora = LocalDateTime.parse(hora);
     }
 }
