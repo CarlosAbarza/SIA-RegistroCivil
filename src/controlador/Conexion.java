@@ -8,6 +8,8 @@ import modelo.*;
 import visual.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 /**
  *
  * @author carlo
@@ -39,7 +41,29 @@ public class Conexion implements MouseListener{
         this.opc3.getVolver().addMouseListener(this);
         this.opc4.getVolver().addMouseListener(this);
         
-        
+        try {
+            // Precarga de datos
+            CSV csv = new CSV("sedes");
+            String linea;
+            csv.firstLine();
+            while ((linea = csv.nextLine()) != null) {
+                String[] elem = linea.split(",");
+                sedes.setSede(new Sede(elem[1], elem[0]));
+            }
+
+            csv = new CSV("tramitesPrecargados");
+            csv.firstLine();
+            while ((linea = csv.nextLine()) != null) {
+                String[] elem = linea.split(",");
+                sedes.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]));
+            }
+        } 
+        catch(FileNotFoundException e) {
+            System.out.println("Archivo no encontrado");
+        } 
+        catch(IOException e) {
+            System.out.println("Error al leer");
+        }
         
         this.menu.setVisible(true);
     }
@@ -83,7 +107,7 @@ public class Conexion implements MouseListener{
             opc4.setLista("Código: " + ss.getCodigo() + "\n");
             for (int j = 0; j < ss.getCantDocumento(); j++) {
                 Tramite tt = ss.getDocumento(j);
-                opc4.setLista("    - Nombre: " + tt.getNombre());
+                opc4.setLista("    - Nombre: " + tt.getNombre() + "\n");
                 opc4.setLista("    - Codigo: " + tt.getCodigo() + "\n");
                 opc4.setLista("    - Hora: " + tt.getHora() + "\n\n");
             }

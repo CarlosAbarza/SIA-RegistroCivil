@@ -20,6 +20,8 @@ public class NewMain {
         ListarTramitesDeSede opc3 = new ListarTramitesDeSede();
         ListarSedesTramite opc4 = new ListarSedesTramite();
         
+        
+        
         Conexion cc = new Conexion(mm, opc1, opc2, opc3, opc4);
         
     }
