@@ -8,8 +8,6 @@ package Exceptions;
  *
  * @author carlo
  */
-public class SedeInexistenteException extends Exception{
-    public SedeInexistenteException() {
-        super("La sede Ingresada no se ha registrado");
-    }
+public class TextoVacioException extends Exception{
+    
 }

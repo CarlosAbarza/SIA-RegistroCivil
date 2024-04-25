@@ -21,7 +21,6 @@ public class ListarTramitesDeSede extends javax.swing.JFrame {
      */
     public ListarTramitesDeSede() {
         initComponents();
-        error.setVisible(false);
         panel.setVisible(false);
         panel.setVisible(false);
     }
@@ -38,7 +37,6 @@ public class ListarTramitesDeSede extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         codigoS = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
-        error = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listado = new javax.swing.JTextArea();
@@ -54,10 +52,6 @@ public class ListarTramitesDeSede extends javax.swing.JFrame {
                 buscarActionPerformed(evt);
             }
         });
-
-        error.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        error.setForeground(new java.awt.Color(255, 51, 51));
-        error.setText("Error: No se ha encontrado la Sede");
 
         listado.setColumns(20);
         listado.setRows(5);
@@ -101,11 +95,6 @@ public class ListarTramitesDeSede extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(volver)
                         .addGap(70, 70, 70))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(74, 74, 74)
-                    .addComponent(error)
-                    .addContainerGap(112, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,11 +110,6 @@ public class ListarTramitesDeSede extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(volver)
                 .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(161, 161, 161)
-                    .addComponent(error)
-                    .addContainerGap(170, Short.MAX_VALUE)))
         );
 
         pack();
@@ -151,10 +135,6 @@ public class ListarTramitesDeSede extends javax.swing.JFrame {
         return volver;
     }
     
-    public void mostrarError() {
-        error.setVisible(true);
-    }
-    
     public void mostrarListado() {
         panel.setVisible(true);
         panel.setVisible(true);
@@ -178,7 +158,6 @@ public class ListarTramitesDeSede extends javax.swing.JFrame {
     
     public void limpiar() {
         panel.setVisible(false);
-        error.setVisible(false);
     }
     
     public void prueba() {
@@ -224,7 +203,6 @@ public class ListarTramitesDeSede extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
     private javax.swing.JTextField codigoS;
-    private javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea listado;

@@ -2,8 +2,6 @@ package modelo;
 
 import Exceptions.FormatoHoraException;
 import Exceptions.RangoHorarioException;
-import modelo.Tramite;
-import modelo.Sede;
 import java.util.*;
 
 public class OrganizadorSede {

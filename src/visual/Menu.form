@@ -24,30 +24,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="agregarTramite" min="-2" max="-2" attributes="0"/>
-                          <Component id="agregarSede" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="93" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="modElimT" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="listarSedesTramite" min="-2" max="-2" attributes="0"/>
-                  <Component id="listarTramitesDeSede" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarSede" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarTramite" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="listarTramitesDeSede" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="listarSedesTramite" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="modTram" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
           </Group>
@@ -67,7 +51,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="listarSedesTramite" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="modElimT" min="-2" max="-2" attributes="0"/>
+              <Component id="modTram" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="81" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -105,9 +89,9 @@
         <Property name="text" type="java.lang.String" value="4. Listar Sedes con sus Tramites"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="modElimT">
+    <Component class="javax.swing.JButton" name="modTram">
       <Properties>
-        <Property name="text" type="java.lang.String" value="5. Modificar/Eliminar Tramite"/>
+        <Property name="text" type="java.lang.String" value="5. Modificar Tramite"/>
       </Properties>
     </Component>
   </SubComponents>

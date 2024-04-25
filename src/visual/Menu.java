@@ -35,7 +35,7 @@ public class Menu extends javax.swing.JFrame {
         agregarTramite = new javax.swing.JButton();
         listarTramitesDeSede = new javax.swing.JButton();
         listarSedesTramite = new javax.swing.JButton();
-        modElimT = new javax.swing.JButton();
+        modTram = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,31 +55,21 @@ public class Menu extends javax.swing.JFrame {
 
         listarSedesTramite.setText("4. Listar Sedes con sus Tramites");
 
-        modElimT.setText("5. Modificar/Eliminar Tramite");
+        modTram.setText("5. Modificar Tramite");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarTramite)
-                            .addComponent(agregarSede))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(modElimT))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(agregarSede)
+                    .addComponent(agregarTramite)
+                    .addComponent(listarTramitesDeSede)
                     .addComponent(listarSedesTramite)
-                    .addComponent(listarTramitesDeSede))
+                    .addComponent(modTram))
                 .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
@@ -96,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(listarSedesTramite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(modElimT)
+                .addComponent(modTram)
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
@@ -124,7 +114,7 @@ public class Menu extends javax.swing.JFrame {
     }
     
     public JButton getOpc5() {
-        return modElimT;
+        return modTram;
     }
     
     /**
@@ -168,6 +158,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listarSedesTramite;
     private javax.swing.JButton listarTramitesDeSede;
-    private javax.swing.JButton modElimT;
+    private javax.swing.JButton modTram;
     // End of variables declaration//GEN-END:variables
 }

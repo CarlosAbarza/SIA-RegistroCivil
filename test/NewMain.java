@@ -19,7 +19,7 @@ public class NewMain {
         AgregarTramite opc2 = new AgregarTramite();
         ListarTramitesDeSede opc3 = new ListarTramitesDeSede();
         ListarSedesTramite opc4 = new ListarSedesTramite();
-        ModificarOEliminarT opc5 = new ModificarOEliminarT();
+        ModificarTramite opc5 = new ModificarTramite();
         
         
         

@@ -48,7 +48,16 @@ public class Tramite {
         return hora;
     }
 
-    public void setHora(String hora) {
-        this.hora = LocalDateTime.parse(hora);
+    public void setHora(String hora) throws FormatoHoraException, RangoHorarioException {
+        try {
+            this.hora = LocalDateTime.parse(hora);
+            if (this.hora.toLocalTime().isBefore(LocalTime.parse("08:30:00")) ||
+                this.hora.toLocalTime().isAfter(LocalTime.parse("14:00:00"))) {
+                throw new RangoHorarioException();
+            }
+        }
+        catch (DateTimeParseException e) {
+            throw new FormatoHoraException();
+        }
     }
 }

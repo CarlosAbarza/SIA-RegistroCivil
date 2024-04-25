@@ -23,11 +23,11 @@ public class Conexion implements MouseListener{
     private AgregarTramite opc2;
     private ListarTramitesDeSede opc3;
     private ListarSedesTramite opc4;
-    private ModificarOEliminarT opc5;
+    private ModificarTramite opc5;
     
     public Conexion(Menu menu, AgregarSede opc1, AgregarTramite opc2, 
             ListarTramitesDeSede opc3, ListarSedesTramite opc4, 
-            ModificarOEliminarT opc5) {
+            ModificarTramite opc5) {
         this.sedes = new OrganizadorSede();
         this.menu = menu;
         this.opc1 = opc1;
@@ -48,9 +48,6 @@ public class Conexion implements MouseListener{
         this.opc3.getVolver().addMouseListener(this);
         this.opc4.getVolver().addMouseListener(this);
         this.opc5.getMod().addMouseListener(this);
-        this.opc5.getElim().addMouseListener(this);
-        this.opc5.getBuscarS().addMouseListener(this);
-        this.opc5.getBuscarT().addMouseListener(this);
         
         
         try {
@@ -78,6 +75,7 @@ public class Conexion implements MouseListener{
             System.out.println("Error al leer");
         }
         catch (FormatoHoraException | RangoHorarioException e){
+            
         }
         
         this.menu.setVisible(true);
@@ -115,7 +113,7 @@ public class Conexion implements MouseListener{
         }
     }
     
-    public void mostrarSedesTramite() {
+    public void mostrarSedesTramiteOpc4() {
         for (int i = 0; i < sedes.getCantidadSede(); i++) {
             Sede ss = sedes.getSede(i);
             opc4.setLista("Ciudad: " + ss.getCiudad() + "\n");
@@ -125,6 +123,38 @@ public class Conexion implements MouseListener{
                 opc4.setLista("    - Nombre: " + tt.getNombre() + "\n");
                 opc4.setLista("    - Codigo: " + tt.getCodigo() + "\n");
                 opc4.setLista("    - Fecha: " + tt.getHora() + "\n\n");
+            }
+        }
+    }
+    
+    public void modificarOpc5() throws TextoVacioException {
+        Sede ss = sedes.getSede(opc5.getCodS().getText());
+        if (ss == null) {
+            (new SedeInexistente()).setVisible(true);
+        }
+        else {
+            Tramite tt = ss.getDocumento(opc5.getCodT().getText());
+            if (tt == null) {
+                (new TramiteNoRegistrado()).setVisible(true);
+            }
+            else {
+                if (!opc5.getFecha().getText().equals("")) {
+                    try {
+                        tt.setHora(opc5.getFecha().getText());
+                    } 
+                    catch (FormatoHoraException e) {
+                        (new ErrorFormatoHora()).setVisible(true);
+                    }
+                    catch (RangoHorarioException e) {
+                        (new ErrorRangoHorario()).setVisible(true);
+                    }
+                }
+                else if (!opc5.getNombre().getText().equals("")) {
+                    tt.setNombre(opc5.getNombre().getText());
+                }
+                else {
+                    throw new TextoVacioException();
+                }
             }
         }
     }
@@ -178,7 +208,7 @@ public class Conexion implements MouseListener{
             opc3.limpiar();
             opc3.setListado();
             if (ss == null) {
-                opc3.mostrarError();
+                (new SedeInexistente()).setVisible(true);
             }
             else {
                 mostrarTramiteOpc3(ss);
@@ -195,7 +225,7 @@ public class Conexion implements MouseListener{
         else if (e.getSource() == menu.getOpc4()) {
             opc4.setVisible(true);
             menu.setVisible(false);
-            mostrarSedesTramite();
+            mostrarSedesTramiteOpc4();
         }
         // Cierra la ventana
         else if (e.getSource() == opc4.getVolver()) {
@@ -209,18 +239,17 @@ public class Conexion implements MouseListener{
             opc5.setVisible(true);
             menu.setVisible(false);
         }
-        else if (e.getSource() == opc5.getBuscarS()) {
-            Sede ss = sedes.getSede(opc5.getCodS().getText());
-            if (ss != null) {
-                opc5.mostrarPanelT();
+        // Abre la ventana para modificar un tramite
+        else if (e.getSource() == opc5.getMod()) {
+            try {
+                modificarOpc5();
+                menu.setVisible(true);
+                opc5.setVisible(false);
             }
-        }
-        else if (e.getSource() == opc5.getBuscarT()) {
-            Sede ss = sedes.getSede(opc5.getCodS().getText());
-            Tramite tt = ss.getDocumento(opc5.getCodT().getText());
-            if (tt != null) {
-                opc5.mostrarPanelOpc();
+            catch(TextoVacioException ex) {
+                (new ErrorFaltaRellenar()).setVisible(true);
             }
+            
         }
     }
     
