@@ -36,6 +36,7 @@ public class Menu extends javax.swing.JFrame {
         listarTramitesDeSede = new javax.swing.JButton();
         listarSedesTramite = new javax.swing.JButton();
         modTram = new javax.swing.JButton();
+        elimTram = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +58,8 @@ public class Menu extends javax.swing.JFrame {
 
         modTram.setText("5. Modificar Tramite");
 
+        elimTram.setText("6. Eliminar Tramite");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,7 +72,8 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(agregarTramite)
                     .addComponent(listarTramitesDeSede)
                     .addComponent(listarSedesTramite)
-                    .addComponent(modTram))
+                    .addComponent(modTram)
+                    .addComponent(elimTram))
                 .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
@@ -87,7 +91,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(listarSedesTramite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(modTram)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(elimTram)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,6 +121,10 @@ public class Menu extends javax.swing.JFrame {
     
     public JButton getOpc5() {
         return modTram;
+    }
+    
+    public JButton getOpc6() {
+        return elimTram;
     }
     
     /**
@@ -155,6 +165,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarSede;
     private javax.swing.JButton agregarTramite;
+    private javax.swing.JButton elimTram;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listarSedesTramite;
     private javax.swing.JButton listarTramitesDeSede;

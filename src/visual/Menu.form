@@ -32,6 +32,7 @@
                   <Component id="listarTramitesDeSede" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="listarSedesTramite" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="modTram" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="elimTram" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
           </Group>
@@ -52,7 +53,9 @@
               <Component id="listarSedesTramite" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="modTram" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="81" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="elimTram" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,6 +95,11 @@
     <Component class="javax.swing.JButton" name="modTram">
       <Properties>
         <Property name="text" type="java.lang.String" value="5. Modificar Tramite"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="elimTram">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="6. Eliminar Tramite"/>
       </Properties>
     </Component>
   </SubComponents>

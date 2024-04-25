@@ -20,10 +20,10 @@ public class NewMain {
         ListarTramitesDeSede opc3 = new ListarTramitesDeSede();
         ListarSedesTramite opc4 = new ListarSedesTramite();
         ModificarTramite opc5 = new ModificarTramite();
+        EliminarTramite opc6 = new EliminarTramite();
         
         
-        
-        Conexion cc = new Conexion(mm, opc1, opc2, opc3, opc4, opc5);
+        Conexion cc = new Conexion(mm, opc1, opc2, opc3, opc4, opc5, opc6);
         
     }
     

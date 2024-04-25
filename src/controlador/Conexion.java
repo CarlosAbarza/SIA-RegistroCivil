@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author carlo
@@ -24,10 +26,11 @@ public class Conexion implements MouseListener{
     private ListarTramitesDeSede opc3;
     private ListarSedesTramite opc4;
     private ModificarTramite opc5;
+    private EliminarTramite opc6;
     
     public Conexion(Menu menu, AgregarSede opc1, AgregarTramite opc2, 
             ListarTramitesDeSede opc3, ListarSedesTramite opc4, 
-            ModificarTramite opc5) {
+            ModificarTramite opc5, EliminarTramite opc6) {
         this.sedes = new OrganizadorSede();
         this.menu = menu;
         this.opc1 = opc1;
@@ -35,12 +38,14 @@ public class Conexion implements MouseListener{
         this.opc3 = opc3;
         this.opc4 = opc4;
         this.opc5 = opc5;
+        this.opc6 = opc6;
         
         this.menu.getOpc1().addMouseListener(this);
         this.menu.getOpc2().addMouseListener(this);
         this.menu.getOpc3().addMouseListener(this);
         this.menu.getOpc4().addMouseListener(this);
         this.menu.getOpc5().addMouseListener(this);
+        this.menu.getOpc6().addMouseListener(this);
         
         this.opc1.getAcept().addMouseListener(this);
         this.opc2.getAcept().addMouseListener(this);
@@ -48,6 +53,9 @@ public class Conexion implements MouseListener{
         this.opc3.getVolver().addMouseListener(this);
         this.opc4.getVolver().addMouseListener(this);
         this.opc5.getMod().addMouseListener(this);
+        this.opc5.getCancel().addMouseListener(this);
+        this.opc6.getEliminar().addMouseListener(this);
+        this.opc6.getCancelar().addMouseListener(this);
         
         
         try {
@@ -103,6 +111,18 @@ public class Conexion implements MouseListener{
         opc4.limpiar();
     }
     
+    public void limpiarOpc5() {
+        opc5.setCodS("");
+        opc5.setCodT("");
+        opc5.setFecha("");
+        opc5.setNombre("");
+    }
+    
+    public void limpiarOpc6() {
+        opc6.setCodigoS("");
+        opc6.setCodigoT("");
+    }
+    
     public void mostrarTramiteOpc3(Sede ss) {
         opc3.mostrarListado();
         for (int i = 0; i < ss.getCantDocumento(); i++) {
@@ -127,36 +147,40 @@ public class Conexion implements MouseListener{
         }
     }
     
-    public void modificarOpc5() throws TextoVacioException {
+    public void modificarOpc5() throws TextoVacioException, SedeNoEncontradaException, 
+            TramiteNoEncontradoException, FormatoHoraException, RangoHorarioException {
         Sede ss = sedes.getSede(opc5.getCodS().getText());
         if (ss == null) {
-            (new SedeInexistente()).setVisible(true);
+            throw new SedeNoEncontradaException();
+        }
+        Tramite tt = ss.getDocumento(opc5.getCodT().getText());
+        if (tt == null) {
+            throw new TramiteNoEncontradoException();
+        }
+        if (!opc5.getFecha().getText().equals("")) {
+            tt.setHora(opc5.getFecha().getText());
+        }
+        else if (!opc5.getNombre().getText().equals("")) {
+            tt.setNombre(opc5.getNombre().getText());
         }
         else {
-            Tramite tt = ss.getDocumento(opc5.getCodT().getText());
-            if (tt == null) {
-                (new TramiteNoRegistrado()).setVisible(true);
-            }
-            else {
-                if (!opc5.getFecha().getText().equals("")) {
-                    try {
-                        tt.setHora(opc5.getFecha().getText());
-                    } 
-                    catch (FormatoHoraException e) {
-                        (new ErrorFormatoHora()).setVisible(true);
-                    }
-                    catch (RangoHorarioException e) {
-                        (new ErrorRangoHorario()).setVisible(true);
-                    }
-                }
-                else if (!opc5.getNombre().getText().equals("")) {
-                    tt.setNombre(opc5.getNombre().getText());
-                }
-                else {
-                    throw new TextoVacioException();
-                }
-            }
+            throw new TextoVacioException();
         }
+        
+    }
+    
+    public void eliminarOpc6() throws SedeNoEncontradaException, 
+            TramiteNoEncontradoException, TextoVacioException {
+        if (opc6.getCodigoS().getText().equals("") ||
+                opc6.getCodigoT().getText().equals("")){
+            throw new TextoVacioException();
+        }
+        
+        Sede ss = sedes.getSede(opc6.getCodigoS().getText());
+        if (ss == null) {
+            throw new SedeNoEncontradaException();
+        }
+        ss.eliminarDocumento(opc6.getCodigoT().getText());
     }
     
     @Override
@@ -234,12 +258,12 @@ public class Conexion implements MouseListener{
             limpiarOpc4();
         }
         
-        // Abre la ventana de Modificar/Eliminar Tramite
+        // Abre la ventana de Modificar Tramite
         else if (e.getSource() == menu.getOpc5()) {
             opc5.setVisible(true);
             menu.setVisible(false);
         }
-        // Abre la ventana para modificar un tramite
+        // Modifica el tramite o intenta hacerlo, si lo logra vuelve al menu
         else if (e.getSource() == opc5.getMod()) {
             try {
                 modificarOpc5();
@@ -249,8 +273,55 @@ public class Conexion implements MouseListener{
             catch(TextoVacioException ex) {
                 (new ErrorFaltaRellenar()).setVisible(true);
             }
-            
+            catch (SedeNoEncontradaException ex) {
+                (new SedeInexistente()).setVisible(true);
+            }
+            catch (TramiteNoEncontradoException ex) {
+                (new TramiteNoRegistrado()).setVisible(true);
+            } 
+            catch (FormatoHoraException ex) {
+                (new ErrorFormatoHora()).setVisible(true);
+            } 
+            catch (RangoHorarioException ex) {
+                (new ErrorRangoHorario()).setVisible(true);
+            }
         }
+        // Cancela la operacion y vuelve al menu
+        else if (e.getSource() == opc5.getCancel()) {
+            menu.setVisible(true);
+            opc5.setVisible(false);
+            limpiarOpc5();
+        }
+        
+        // Abre la ventana Eliminar Tramite
+        else if (e.getSource() == menu.getOpc6()) {
+            opc6.setVisible(true);
+            menu.setVisible(false);
+        }
+        // Elimina el tramite o intenta haerlo, si lo logra vuelve al menu
+        else if (e.getSource() == opc6.getEliminar()) {
+            try {
+                eliminarOpc6();
+                menu.setVisible(true);
+                opc6.setVisible(false);
+            }
+            catch(TextoVacioException ex) {
+                (new ErrorFaltaRellenar()).setVisible(true);
+            }
+            catch (SedeNoEncontradaException ex) {
+                (new SedeInexistente()).setVisible(true);
+            }
+            catch (TramiteNoEncontradoException ex) {
+                (new TramiteNoRegistrado()).setVisible(true);
+            } 
+        }
+        // Cancela la operacion y vuelve al menu
+        else if (e.getSource() == opc6.getCancelar()) {
+            menu.setVisible(true);
+            opc6.setVisible(false);
+            limpiarOpc6();
+        }
+        
     }
     
     @Override

@@ -1,5 +1,6 @@
 package modelo;
 
+import Exceptions.TramiteNoEncontradoException;
 import java.time.LocalTime;
 
 public class Sede {
@@ -63,5 +64,9 @@ public class Sede {
     
     public int getCantDocumento() {
         return documento.getLargo();
+    }
+    
+    public void eliminarDocumento(String codigo) throws TramiteNoEncontradoException {
+        documento.eliminarDocumento(codigo);
     }
 }

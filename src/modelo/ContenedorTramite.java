@@ -1,5 +1,6 @@
 package modelo;
 
+import Exceptions.TramiteNoEncontradoException;
 import modelo.Tramite;
 import java.util.*;
 
@@ -33,5 +34,14 @@ public class ContenedorTramite {
     
     public int getLargo() {
         return lista.size();
+    }
+    
+    public void eliminarDocumento(String codigo) throws TramiteNoEncontradoException {
+        if (mapa.containsKey(codigo)){
+            lista.remove(mapa.remove(codigo));
+        }
+        else {
+            throw new TramiteNoEncontradoException();
+        }
     }
 }
