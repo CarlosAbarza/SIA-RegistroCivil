@@ -35,6 +35,7 @@ public class Menu extends javax.swing.JFrame {
         agregarTramite = new javax.swing.JButton();
         listarTramitesDeSede = new javax.swing.JButton();
         listarSedesTramite = new javax.swing.JButton();
+        modElimT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +55,8 @@ public class Menu extends javax.swing.JFrame {
 
         listarSedesTramite.setText("4. Listar Sedes con sus Tramites");
 
+        modElimT.setText("5. Modificar/Eliminar Tramite");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,6 +75,9 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 93, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(modElimT))
                     .addComponent(listarSedesTramite)
                     .addComponent(listarTramitesDeSede))
                 .addGap(98, 98, 98))
@@ -83,13 +89,15 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(agregarSede)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(agregarTramite)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(listarTramitesDeSede)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(listarSedesTramite)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(modElimT)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,6 +121,10 @@ public class Menu extends javax.swing.JFrame {
     
     public JButton getOpc4() {
         return listarSedesTramite;
+    }
+    
+    public JButton getOpc5() {
+        return modElimT;
     }
     
     /**
@@ -156,5 +168,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listarSedesTramite;
     private javax.swing.JButton listarTramitesDeSede;
+    private javax.swing.JButton modElimT;
     // End of variables declaration//GEN-END:variables
 }

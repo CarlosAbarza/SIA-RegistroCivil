@@ -1,5 +1,7 @@
 package modelo;
 
+import Exceptions.FormatoHoraException;
+import Exceptions.RangoHorarioException;
 import modelo.Tramite;
 import modelo.Sede;
 import java.util.*;
@@ -53,7 +55,8 @@ public class OrganizadorSede {
         }
     }
     
-    public int setTramite(String codigoS, String nombre, String codigoT, String hora) {
+    public int setTramite(String codigoS, String nombre, String codigoT, String hora)
+            throws FormatoHoraException, RangoHorarioException {
         Tramite tt = new Tramite(nombre, codigoT, hora);
         Sede temp = mapa.get(codigoS);
         if (temp == null) {

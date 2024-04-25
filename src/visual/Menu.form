@@ -42,6 +42,10 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="93" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="modElimT" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="listarSedesTramite" min="-2" max="-2" attributes="0"/>
                   <Component id="listarTramitesDeSede" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -56,13 +60,15 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="agregarSede" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="agregarTramite" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="listarTramitesDeSede" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="listarSedesTramite" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="modElimT" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="81" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,6 +103,11 @@
     <Component class="javax.swing.JButton" name="listarSedesTramite">
       <Properties>
         <Property name="text" type="java.lang.String" value="4. Listar Sedes con sus Tramites"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="modElimT">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="5. Modificar/Eliminar Tramite"/>
       </Properties>
     </Component>
   </SubComponents>

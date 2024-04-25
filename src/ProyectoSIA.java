@@ -23,21 +23,21 @@ public class ProyectoSIA {
         Iterator<Tramite> trams;
         Iterator<Sede> sedes;
         
-        // Precarga de datos
-        CSV csv = new CSV("sedes");
-        String linea;
-        csv.firstLine();
-        while ((linea = csv.nextLine()) != null) {
-            String[] elem = linea.split(",");
-            registros.setSede(new Sede(elem[1], elem[0]));
-        }
-        
-        csv = new CSV("tramitesPrecargados");
-        csv.firstLine();
-        while ((linea = csv.nextLine()) != null) {
-            String[] elem = linea.split(",");
-            registros.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]));
-        }
+//        // Precarga de datos
+//        CSV csv = new CSV("sedes");
+//        String linea;
+//        csv.firstLine();
+//        while ((linea = csv.nextLine()) != null) {
+//            String[] elem = linea.split(",");
+//            registros.setSede(new Sede(elem[1], elem[0]));
+//        }
+//        
+//        csv = new CSV("tramitesPrecargados");
+//        csv.firstLine();
+//        while ((linea = csv.nextLine()) != null) {
+//            String[] elem = linea.split(",");
+//            registros.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]));
+//        }
         
         while (bucle) {
             System.out.println("Menú");
@@ -69,26 +69,26 @@ public class ProyectoSIA {
                     }
                 }
                 
-                case "2" -> {
-                    // Agregar un tramite
-                    System.out.println("Ingrese el codigo del tramite: ");
-                    auxCodT = lector.readLine();
-                    System.out.println("Ingrese el nombre: ");
-                    auxNameT = lector.readLine();
-                    System.out.println("Ingrese la hora en que se realizo: ");
-                    auxHoraT = lector.readLine();
-                    
-                    System.out.println("Ingrese el codigo de la sede en que se realizo: ");
-                    auxCodS = lector.readLine();
-                    
-                    int temp = registros.setTramite(auxCodS, new Tramite(auxNameT, auxCodT, auxHoraT));
-                    if (temp == 0) {
-                        System.out.println("No se ha registrado la Sede\n");
-                    }
-                    else if (temp == -1) {
-                        System.out.println("Ya existe un tramite con ese codigo\n");
-                    }
-                }
+//                case "2" -> {
+//                    // Agregar un tramite
+//                    System.out.println("Ingrese el codigo del tramite: ");
+//                    auxCodT = lector.readLine();
+//                    System.out.println("Ingrese el nombre: ");
+//                    auxNameT = lector.readLine();
+//                    System.out.println("Ingrese la hora en que se realizo: ");
+//                    auxHoraT = lector.readLine();
+//                    
+//                    System.out.println("Ingrese el codigo de la sede en que se realizo: ");
+//                    auxCodS = lector.readLine();
+//                    
+//                    int temp = registros.setTramite(auxCodS, new Tramite(auxNameT, auxCodT, auxHoraT));
+//                    if (temp == 0) {
+//                        System.out.println("No se ha registrado la Sede\n");
+//                    }
+//                    else if (temp == -1) {
+//                        System.out.println("Ya existe un tramite con ese codigo\n");
+//                    }
+//                }
                 
                 /*case "3" -> {
                     // Mostrar todos los tramites realizados en la Sede

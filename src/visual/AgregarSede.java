@@ -103,7 +103,7 @@ public class AgregarSede extends javax.swing.JFrame {
     }//GEN-LAST:event_codigoActionPerformed
 
     private void aceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptActionPerformed
-        this.setVisible(false);
+        
     }//GEN-LAST:event_aceptActionPerformed
 
     public JTextField getCodigo() {

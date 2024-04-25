@@ -1,16 +1,31 @@
 package modelo;
 
+import Exceptions.FormatoHoraException;
+import Exceptions.RangoHorarioException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 public class Tramite {
     private String nombre;
     private String codigo;
     private LocalDateTime hora;
 
-    public Tramite(String nombre, String codigo, String hora) {
-        this.nombre = nombre;
-        this.codigo = codigo;
-        this.hora = LocalDateTime.parse(hora);
+    public Tramite(String nombre, String codigo, String hora) 
+            throws FormatoHoraException, RangoHorarioException {
+        try {
+            this.nombre = nombre;
+            this.codigo = codigo;
+            this.hora = LocalDateTime.parse(hora);
+            
+            if (this.hora.toLocalTime().isBefore(LocalTime.parse("08:30:00")) ||
+                this.hora.toLocalTime().isAfter(LocalTime.parse("14:00:00"))) {
+                throw new RangoHorarioException();
+            }
+        }
+        catch (DateTimeParseException e) {
+            throw new FormatoHoraException();
+        }
     }
 
     public String getNombre() {

@@ -4,6 +4,8 @@
  */
 package controlador;
 
+import visual.PestañasErrores.*;
+import Exceptions.*;
 import modelo.*;
 import visual.*;
 import java.awt.event.MouseEvent;
@@ -21,25 +23,35 @@ public class Conexion implements MouseListener{
     private AgregarTramite opc2;
     private ListarTramitesDeSede opc3;
     private ListarSedesTramite opc4;
+    private ModificarOEliminarT opc5;
     
     public Conexion(Menu menu, AgregarSede opc1, AgregarTramite opc2, 
-            ListarTramitesDeSede opc3, ListarSedesTramite opc4) {
+            ListarTramitesDeSede opc3, ListarSedesTramite opc4, 
+            ModificarOEliminarT opc5) {
         this.sedes = new OrganizadorSede();
         this.menu = menu;
         this.opc1 = opc1;
         this.opc2 = opc2;
         this.opc3 = opc3;
         this.opc4 = opc4;
+        this.opc5 = opc5;
         
         this.menu.getOpc1().addMouseListener(this);
         this.menu.getOpc2().addMouseListener(this);
         this.menu.getOpc3().addMouseListener(this);
         this.menu.getOpc4().addMouseListener(this);
+        this.menu.getOpc5().addMouseListener(this);
+        
         this.opc1.getAcept().addMouseListener(this);
         this.opc2.getAcept().addMouseListener(this);
         this.opc3.getBuscar().addMouseListener(this);
         this.opc3.getVolver().addMouseListener(this);
         this.opc4.getVolver().addMouseListener(this);
+        this.opc5.getMod().addMouseListener(this);
+        this.opc5.getElim().addMouseListener(this);
+        this.opc5.getBuscarS().addMouseListener(this);
+        this.opc5.getBuscarT().addMouseListener(this);
+        
         
         try {
             // Precarga de datos
@@ -64,6 +76,8 @@ public class Conexion implements MouseListener{
         } 
         catch(IOException e) {
             System.out.println("Error al leer");
+        }
+        catch (FormatoHoraException | RangoHorarioException e){
         }
         
         this.menu.setVisible(true);
@@ -137,11 +151,20 @@ public class Conexion implements MouseListener{
         }
         // Cierra la ventana
         else if (e.getSource() == opc2.getAcept()) {
-            menu.setVisible(true);
-            opc2.setVisible(false);
-            sedes.setTramite(opc2.getCodigoS().getText(), opc2.getNombre().getText(),
-                    opc2.getCodigoT().getText(), opc2.getHora().getText());
-            limpiarOpc2();
+            try {
+                
+                sedes.setTramite(opc2.getCodigoS().getText(), opc2.getNombre().getText(),
+                        opc2.getCodigoT().getText(), opc2.getHora().getText());
+                menu.setVisible(true);
+                opc2.setVisible(false);
+                limpiarOpc2();
+            } 
+            catch (FormatoHoraException ex) {
+                (new ErrorFormatoHora()).setVisible(true);
+            }
+            catch (RangoHorarioException ex) {
+                (new ErrorRangoHorario()).setVisible(true);
+            }
         }
         
         // Abre la ventana para listar los Tramites de una Sede
@@ -179,6 +202,25 @@ public class Conexion implements MouseListener{
             menu.setVisible(true);
             opc4.setVisible(false);
             limpiarOpc4();
+        }
+        
+        // Abre la ventana de Modificar/Eliminar Tramite
+        else if (e.getSource() == menu.getOpc5()) {
+            opc5.setVisible(true);
+            menu.setVisible(false);
+        }
+        else if (e.getSource() == opc5.getBuscarS()) {
+            Sede ss = sedes.getSede(opc5.getCodS().getText());
+            if (ss != null) {
+                opc5.mostrarPanelT();
+            }
+        }
+        else if (e.getSource() == opc5.getBuscarT()) {
+            Sede ss = sedes.getSede(opc5.getCodS().getText());
+            Tramite tt = ss.getDocumento(opc5.getCodT().getText());
+            if (tt != null) {
+                opc5.mostrarPanelOpc();
+            }
         }
     }
     

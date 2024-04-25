@@ -1,7 +1,6 @@
 package modelo;
 
 import java.time.LocalTime;
-import java.util.*;
 
 public class Sede {
     private String codigo;
