@@ -2,6 +2,7 @@ package modelo;
 
 import Exceptions.FormatoHoraException;
 import Exceptions.RangoHorarioException;
+import Exceptions.SedeNoEncontradaException;
 import java.util.*;
 
 public class OrganizadorSede {
@@ -53,19 +54,14 @@ public class OrganizadorSede {
         }
     }
     
-    public int setTramite(String codigoS, String nombre, String codigoT, String hora)
-            throws FormatoHoraException, RangoHorarioException {
+    public void setTramite(String codigoS, String nombre, String codigoT, String hora)
+            throws FormatoHoraException, RangoHorarioException, SedeNoEncontradaException {
         Tramite tt = new Tramite(nombre, codigoT, hora);
         Sede temp = mapa.get(codigoS);
         if (temp == null) {
-            return 0;
+            throw new SedeNoEncontradaException();
         }
-        else if (temp.setDocumento(tt)) {
-            return 1;
-        }
-        else {
-            return -1;
-        }
+        temp.setDocumento(tt);
     }
     
     public Tramite getDocumento(String codigo, int i) {

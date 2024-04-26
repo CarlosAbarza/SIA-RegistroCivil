@@ -12,8 +12,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 /**
  *
  * @author carlo
@@ -27,10 +27,12 @@ public class Conexion implements MouseListener{
     private ListarSedesTramite opc4;
     private ModificarTramite opc5;
     private EliminarTramite opc6;
+    private RangoTiempo opc7;
     
     public Conexion(Menu menu, AgregarSede opc1, AgregarTramite opc2, 
             ListarTramitesDeSede opc3, ListarSedesTramite opc4, 
-            ModificarTramite opc5, EliminarTramite opc6) {
+            ModificarTramite opc5, EliminarTramite opc6,
+            RangoTiempo opc7) {
         this.sedes = new OrganizadorSede();
         this.menu = menu;
         this.opc1 = opc1;
@@ -39,6 +41,7 @@ public class Conexion implements MouseListener{
         this.opc4 = opc4;
         this.opc5 = opc5;
         this.opc6 = opc6;
+        this.opc7 = opc7;
         
         this.menu.getOpc1().addMouseListener(this);
         this.menu.getOpc2().addMouseListener(this);
@@ -46,6 +49,8 @@ public class Conexion implements MouseListener{
         this.menu.getOpc4().addMouseListener(this);
         this.menu.getOpc5().addMouseListener(this);
         this.menu.getOpc6().addMouseListener(this);
+        this.menu.getOpc7().addMouseListener(this);
+        
         
         this.opc1.getAcept().addMouseListener(this);
         this.opc2.getAcept().addMouseListener(this);
@@ -56,6 +61,8 @@ public class Conexion implements MouseListener{
         this.opc5.getCancel().addMouseListener(this);
         this.opc6.getEliminar().addMouseListener(this);
         this.opc6.getCancelar().addMouseListener(this);
+        this.opc7.getBuscar().addMouseListener(this);
+        this.opc7.getVolver().addMouseListener(this);
         
         
         try {
@@ -123,6 +130,12 @@ public class Conexion implements MouseListener{
         opc6.setCodigoT("");
     }
     
+    public void limpiarOpc7() {
+        opc7.setLista();
+        opc7.setInicio("");
+        opc7.setCierre("");
+    }
+    
     public void mostrarTramiteOpc3(Sede ss) {
         opc3.mostrarListado();
         for (int i = 0; i < ss.getCantDocumento(); i++) {
@@ -183,6 +196,41 @@ public class Conexion implements MouseListener{
         ss.eliminarDocumento(opc6.getCodigoT().getText());
     }
     
+    public void buscarRango() throws FormatoHoraException, TextoVacioException {
+        if (opc7.getInicio().getText().equals("") ||
+                opc7.getCierre().getText().equals("")){
+            throw new TextoVacioException();
+        }
+        LocalDateTime inicio;
+        LocalDateTime cierre;
+        try {
+            inicio = LocalDateTime.parse(opc7.getInicio().getText());
+            cierre = LocalDateTime.parse(opc7.getCierre().getText());
+        }
+        catch (DateTimeParseException e) {
+            throw new FormatoHoraException();
+        }
+        
+        for (int i = 0; i < sedes.getCantidadSede(); i++) {
+            int cont = 0;
+            Sede ss = sedes.getSede(i);
+            opc7.setLista("Ciudad: " + ss.getCiudad() + "\n");
+            opc7.setLista("Código: " + ss.getCodigo() + "\n");
+            for (int j = 0; j < ss.getCantDocumento(); j++) {
+                Tramite tt = ss.getDocumento(j);
+                if (tt.dentroRango(inicio, cierre)) {
+                    opc7.setLista("    - Nombre: " + tt.getNombre() + "\n");
+                    opc7.setLista("    - Codigo: " + tt.getCodigo() + "\n");
+                    opc7.setLista("    - Fecha: " + tt.getHora() + "\n\n");
+                    cont++;
+                }
+            }
+            if (cont == 0) {
+                opc7.setLista("    NO TIENE TRAMITES EN ESE RANGO\n\n");
+            }
+        }
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         // Abre la ventana para agregar Sede
@@ -190,12 +238,19 @@ public class Conexion implements MouseListener{
             opc1.setVisible(true);
             menu.setVisible(false);
         }
-        // Cierra la ventana
+        // Si se ingresaron los dato bien, Cierra la ventana
         else if (e.getSource() == opc1.getAcept()) {
-            menu.setVisible(true);
-            opc1.setVisible(false);
-            sedes.setSede(opc1.getCodigo().getText(), opc1.getCity().getText());
-            limpiarOpc1();
+            if (opc1.getCodigo().getText().equals("") ||
+                opc1.getCity().getText().equals("")){
+                (new ErrorFaltaRellenar()).setVisible(true);
+            }
+            else {
+                menu.setVisible(true);
+                opc1.setVisible(false);
+                sedes.setSede(opc1.getCodigo().getText(), opc1.getCity().getText());
+                limpiarOpc1();
+            }
+            
         }
         
         // Abre la ventana para agregar Tramite
@@ -203,21 +258,31 @@ public class Conexion implements MouseListener{
             opc2.setVisible(true);
             menu.setVisible(false);
         }
-        // Cierra la ventana
+        // Si se ingresaron bien los datos, Cierra la ventana
         else if (e.getSource() == opc2.getAcept()) {
-            try {
-                
-                sedes.setTramite(opc2.getCodigoS().getText(), opc2.getNombre().getText(),
-                        opc2.getCodigoT().getText(), opc2.getHora().getText());
-                menu.setVisible(true);
-                opc2.setVisible(false);
-                limpiarOpc2();
-            } 
-            catch (FormatoHoraException ex) {
-                (new ErrorFormatoHora()).setVisible(true);
+            if (opc2.getCodigoS().getText().equals("") ||
+                    opc2.getNombre().getText().equals("") ||
+                    opc2.getCodigoT().getText().equals("") ||
+                    opc2.getHora().getText().equals("")) {
+                (new ErrorFaltaRellenar()).setVisible(true);
             }
-            catch (RangoHorarioException ex) {
-                (new ErrorRangoHorario()).setVisible(true);
+            else {
+                try {
+
+                    sedes.setTramite(opc2.getCodigoS().getText(), opc2.getNombre().getText(),
+                            opc2.getCodigoT().getText(), opc2.getHora().getText());
+                    menu.setVisible(true);
+                    opc2.setVisible(false);
+                    limpiarOpc2();
+                } 
+                catch (FormatoHoraException ex) {
+                    (new ErrorFormatoHora()).setVisible(true);
+                }
+                catch (RangoHorarioException ex) {
+                    (new ErrorRangoHorario()).setVisible(true);
+                }catch (SedeNoEncontradaException ex) {
+                    (new SedeInexistente()).setVisible(true);
+                }
             }
         }
         
@@ -228,14 +293,19 @@ public class Conexion implements MouseListener{
         }
         // Busca la Sede
         else if (e.getSource() == opc3.getBuscar()) {
-            Sede ss = sedes.getSede(opc3.getCodigoS().getText());
-            opc3.limpiar();
-            opc3.setListado();
-            if (ss == null) {
-                (new SedeInexistente()).setVisible(true);
+            if (opc3.getCodigoS().getText().equals("")) {
+                (new ErrorFaltaRellenar()).setVisible(true);
             }
             else {
-                mostrarTramiteOpc3(ss);
+                Sede ss = sedes.getSede(opc3.getCodigoS().getText());
+                opc3.limpiar();
+                opc3.setListado();
+                if (ss == null) {
+                    (new SedeInexistente()).setVisible(true);
+                }
+                else {
+                    mostrarTramiteOpc3(ss);
+                }
             }
         }
         // Cierra la ventana
@@ -322,6 +392,30 @@ public class Conexion implements MouseListener{
             limpiarOpc6();
         }
         
+        // Abre la ventana para buscar en un rango de tiempo
+        else if (e.getSource() == menu.getOpc7()) {
+            opc7.setVisible(true);
+            menu.setVisible(false);
+        }
+        // Busca los elementos o lanza el error
+        else if (e.getSource() == opc7.getBuscar()) {
+            try {
+                opc7.setLista();
+                buscarRango();
+            }
+            catch (FormatoHoraException ex) {
+                (new ErrorFormatoHora()).setVisible(true);
+            }
+            catch (TextoVacioException ex) {
+                (new ErrorFaltaRellenar()).setVisible(true);
+            }
+        }
+        // Vuelve al menu
+        else if (e.getSource() == opc7.getVolver()) {
+            menu.setVisible(true);
+            opc7.setVisible(false);
+            limpiarOpc7();
+        }
     }
     
     @Override

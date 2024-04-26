@@ -13,8 +13,8 @@ public class Sede {
     public Sede(String codigo, String ciudad) {
         this.codigo = codigo;
         this.ciudad = ciudad;
-        this.horaInicio = LocalTime.parse("08:30:00");
-        this.horaCierre = LocalTime.parse("14:00:00");
+        this.horaInicio = LocalTime.parse("08:30");
+        this.horaCierre = LocalTime.parse("14:00");
         this.documento = new ContenedorTramite();
     }
 

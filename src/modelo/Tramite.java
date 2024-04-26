@@ -60,4 +60,8 @@ public class Tramite {
             throw new FormatoHoraException();
         }
     }
+    
+    public boolean dentroRango(LocalDateTime inicio, LocalDateTime cierre) {
+        return hora.isAfter(inicio) && hora.isBefore(cierre);
+    }
 }

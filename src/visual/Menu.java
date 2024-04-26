@@ -37,6 +37,7 @@ public class Menu extends javax.swing.JFrame {
         listarSedesTramite = new javax.swing.JButton();
         modTram = new javax.swing.JButton();
         elimTram = new javax.swing.JButton();
+        buscarRango = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,21 +61,24 @@ public class Menu extends javax.swing.JFrame {
 
         elimTram.setText("6. Eliminar Tramite");
 
+        buscarRango.setText("7. Tramites realizados en rango de tiempo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 93, Short.MAX_VALUE)
+                .addGap(0, 71, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(modTram)
+                    .addComponent(elimTram)
+                    .addComponent(buscarRango)
                     .addComponent(jLabel1)
                     .addComponent(agregarSede)
                     .addComponent(agregarTramite)
                     .addComponent(listarTramitesDeSede)
-                    .addComponent(listarSedesTramite)
-                    .addComponent(modTram)
-                    .addComponent(elimTram))
-                .addGap(98, 98, 98))
+                    .addComponent(listarSedesTramite))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,9 +95,11 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(listarSedesTramite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(modTram)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(elimTram)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buscarRango)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,6 +131,10 @@ public class Menu extends javax.swing.JFrame {
     
     public JButton getOpc6() {
         return elimTram;
+    }
+    
+    public JButton getOpc7() {
+        return buscarRango;
     }
     
     /**
@@ -165,6 +175,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarSede;
     private javax.swing.JButton agregarTramite;
+    private javax.swing.JButton buscarRango;
     private javax.swing.JButton elimTram;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listarSedesTramite;

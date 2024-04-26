@@ -21,9 +21,10 @@ public class NewMain {
         ListarSedesTramite opc4 = new ListarSedesTramite();
         ModificarTramite opc5 = new ModificarTramite();
         EliminarTramite opc6 = new EliminarTramite();
+        RangoTiempo opc7 = new RangoTiempo();
         
         
-        Conexion cc = new Conexion(mm, opc1, opc2, opc3, opc4, opc5, opc6);
+        Conexion cc = new Conexion(mm, opc1, opc2, opc3, opc4, opc5, opc6, opc7);
         
     }
     
