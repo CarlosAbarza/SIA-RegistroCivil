@@ -10,7 +10,9 @@ import modelo.*;
 import visual.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -95,6 +97,42 @@ public class Conexion implements MouseListener{
         
         this.menu.setVisible(true);
     }
+    
+    //Funciones de exportar CSV
+    public void exportarSedes(String rutaArchivo){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
+            writer.write("codigoSede,ciudad");
+            writer.newLine();
+            
+            for (int i = 0; i < sedes.getCantidadSede(); i++) {
+                Sede sede = sedes.getSede(i);
+                System.out.println(sedes);
+                writer.write(sede.getCodigo() + "," + sede.getCiudad());
+                writer.newLine(); 
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void exportarTramites(String rutaArchivo){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))){
+            writer.write("codigoTramite,nombreTramite,hora,codigoSede");
+            writer.newLine();
+
+            for (int i = 0; i < sedes.getCantidadSede(); i++) {
+                Sede sede = sedes.getSede(i);
+                for (int j = 0; j < sede.getCantDocumento(); j++) {
+                    Tramite tramite = sede.getDocumento(j);
+                    writer.write(tramite.getCodigo() + "," + tramite.getNombre() + "," + tramite.getHora() + "," + sede.getCodigo());
+                    writer.newLine();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     
     public void limpiarOpc1() {
         opc1.setCodigo("");
