@@ -80,7 +80,7 @@ public class Conexion implements MouseListener{
             csv.firstLine();
             while ((linea = csv.nextLine()) != null) {
                 String[] elem = linea.split(",");
-                sedes.setSede(new Sede(elem[1], elem[0]));
+                sedes.setSede(elem[1], elem[0], Integer.parseInt(elem[2]));
             }
 
             csv = new CSV("tramitesPrecargados");
