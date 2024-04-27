@@ -4,6 +4,8 @@
  */
 package visual;
 import controlador.Conexion;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 
 /**
  *
@@ -11,12 +13,12 @@ import controlador.Conexion;
  */
 public class ExportarCSV extends javax.swing.JFrame {
 
-   Conexion conexion;
+   //Conexion conexion;
     
-    /*public ExportarCSV() {
+    public ExportarCSV() {
         initComponents();
-        this.conexion = new Conexion();
-    }*/
+        //this.conexion = new Conexion();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,12 +31,13 @@ public class ExportarCSV extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        csv = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         exportarCSVbtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tipo = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,9 +48,9 @@ public class ExportarCSV extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Ingresa el nombre del CSV a exportar  ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        csv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                csvActionPerformed(evt);
             }
         });
 
@@ -68,13 +71,17 @@ public class ExportarCSV extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Complete el campo");
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedes", "Tramites" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        tipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedes", "Tramites" }));
+        tipo.setSelectedIndex(-1);
+        tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                tipoActionPerformed(evt);
             }
         });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setText("Tipo: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,11 +105,14 @@ public class ExportarCSV extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(csv, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -113,11 +123,13 @@ public class ExportarCSV extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(csv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(exportarCSVbtn)
@@ -128,40 +140,42 @@ public class ExportarCSV extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        exportarCSVbtn.getAccessibleContext().setAccessibleName("Exportar");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void csvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_csvActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_csvActionPerformed
 
     private void exportarCSVbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarCSVbtnActionPerformed
-        String csv = this.jTextField1.getText();
         
-        if (csv.isEmpty()){
-            jLabel5.setText("Complete el campo del nombre del archivo");
-            return;
-        }
-        
-        csv += ".csv";
-        String tipo = jComboBox1.getSelectedItem().toString();
-        
-        if (tipo.equals("Sedes")){
-            conexion.exportarSedes(csv);
-        }
-        else{
-            conexion.exportarTramites(csv);
-        }
-        
-        jLabel5.setText("CSV exportado con nombre " +csv);
     }//GEN-LAST:event_exportarCSVbtnActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_tipoActionPerformed
 
+    public JButton getExportar() {
+        return exportarCSVbtn;
+    }
+
+    public JTextField getCsv() {
+        return csv;
+    }
+    
+    public void setCsv(String tt) {
+        csv.setText(tt);
+    }
+    
+    public int getTipo() {
+        return tipo.getSelectedIndex();
+    }
+    
+    public void setTipo(int i) {
+        tipo.setSelectedIndex(i);
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -196,15 +210,16 @@ public class ExportarCSV extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField csv;
     private javax.swing.JButton exportarCSVbtn;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
 }

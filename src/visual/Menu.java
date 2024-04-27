@@ -38,6 +38,7 @@ public class Menu extends javax.swing.JFrame {
         modTram = new javax.swing.JButton();
         elimTram = new javax.swing.JButton();
         buscarRango = new javax.swing.JButton();
+        expCsv = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,8 @@ public class Menu extends javax.swing.JFrame {
 
         buscarRango.setText("7. Tramites realizados en rango de tiempo");
 
+        expCsv.setText("8. Exportar a un CSV");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,7 +80,8 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(agregarSede)
                     .addComponent(agregarTramite)
                     .addComponent(listarTramitesDeSede)
-                    .addComponent(listarSedesTramite))
+                    .addComponent(listarSedesTramite)
+                    .addComponent(expCsv))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,7 +103,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(elimTram)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buscarRango)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(expCsv)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,6 +141,10 @@ public class Menu extends javax.swing.JFrame {
     
     public JButton getOpc7() {
         return buscarRango;
+    }
+    
+    public JButton getOpc8(){
+        return expCsv;
     }
     
     /**
@@ -177,6 +187,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton agregarTramite;
     private javax.swing.JButton buscarRango;
     private javax.swing.JButton elimTram;
+    private javax.swing.JButton expCsv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listarSedesTramite;
     private javax.swing.JButton listarTramitesDeSede;

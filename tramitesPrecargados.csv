@@ -1,6 +1,6 @@
-codigoTramite,nombreTramite,hora,codigoSede
-520,CedulaIdentidad,2024-04-24T09:00:00,7050
-220,Nacimiento,2024-04-24T09:30:00,7050
-520,CedulaIdentidad,2024-04-24T10:00:00,9035
-650,MatrimonioCivil,2024-04-24T11:00:00,9035
-650,MatrimonioCivil,2024-04-24T12:00:00,9045
+codigoTramite,nombreTramite,hora,codigoSede,Tipo
+520,CedulaIdentidad,2024-04-24T09:00:00,7050,0
+220,Nacimiento,2024-04-24T09:30:00,7050,0
+520,CedulaIdentidad,2024-04-24T10:00:00,9035,1
+650,MatrimonioCivil,2024-04-24T11:00:00,9035,1
+650,MatrimonioCivil,2024-04-24T12:00:00,9045,1

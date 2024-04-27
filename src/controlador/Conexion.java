@@ -16,6 +16,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author carlo
@@ -30,11 +32,12 @@ public class Conexion implements MouseListener{
     private ModificarTramite opc5;
     private EliminarTramite opc6;
     private RangoTiempo opc7;
+    private ExportarCSV opc8;
     
     public Conexion(Menu menu, AgregarSede opc1, AgregarTramite opc2, 
             ListarTramitesDeSede opc3, ListarSedesTramite opc4, 
             ModificarTramite opc5, EliminarTramite opc6,
-            RangoTiempo opc7) {
+            RangoTiempo opc7, ExportarCSV opc8) {
         this.sedes = new OrganizadorSede();
         this.menu = menu;
         this.opc1 = opc1;
@@ -44,6 +47,7 @@ public class Conexion implements MouseListener{
         this.opc5 = opc5;
         this.opc6 = opc6;
         this.opc7 = opc7;
+        this.opc8 = opc8;
         
         this.menu.getOpc1().addMouseListener(this);
         this.menu.getOpc2().addMouseListener(this);
@@ -52,6 +56,7 @@ public class Conexion implements MouseListener{
         this.menu.getOpc5().addMouseListener(this);
         this.menu.getOpc6().addMouseListener(this);
         this.menu.getOpc7().addMouseListener(this);
+        this.menu.getOpc8().addMouseListener(this);
         
         
         this.opc1.getAcept().addMouseListener(this);
@@ -65,6 +70,7 @@ public class Conexion implements MouseListener{
         this.opc6.getCancelar().addMouseListener(this);
         this.opc7.getBuscar().addMouseListener(this);
         this.opc7.getVolver().addMouseListener(this);
+        this.opc8.getExportar().addMouseListener(this);
         
         
         try {
@@ -81,7 +87,7 @@ public class Conexion implements MouseListener{
             csv.firstLine();
             while ((linea = csv.nextLine()) != null) {
                 String[] elem = linea.split(",");
-                sedes.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]));
+                sedes.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]), Integer.parseInt(elem[4]));
             }
             
         } 
@@ -91,7 +97,7 @@ public class Conexion implements MouseListener{
         catch(IOException e) {
             System.out.println("Error al leer");
         }
-        catch (FormatoHoraException | RangoHorarioException e){
+        catch (FormatoHoraException | RangoHorarioException | TipoSedeException e){
             
         }
         
@@ -99,7 +105,10 @@ public class Conexion implements MouseListener{
     }
     
     //Funciones de exportar CSV
-    public void exportarSedes(String rutaArchivo){
+    public void exportarSedes(String rutaArchivo) throws TextoVacioException {
+        if (opc8.getCsv().getText().equals("")) {
+            throw new TextoVacioException();
+        }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
             writer.write("codigoSede,ciudad");
             writer.newLine();
@@ -144,6 +153,7 @@ public class Conexion implements MouseListener{
         opc2.setNombre("");
         opc2.setHora("");
         opc2.setCodigoS("");
+        opc2.setTipo(-1);
     }
     
     public void limpiarOpc3() {
@@ -172,6 +182,11 @@ public class Conexion implements MouseListener{
         opc7.setLista();
         opc7.setInicio("");
         opc7.setCierre("");
+    }
+    
+    public void limpiarOpc8() {
+        opc8.setTipo(-1);
+        opc8.setCsv("");
     }
     
     public void mostrarTramiteOpc3(Sede ss) {
@@ -279,13 +294,14 @@ public class Conexion implements MouseListener{
         // Si se ingresaron los dato bien, Cierra la ventana
         else if (e.getSource() == opc1.getAcept()) {
             if (opc1.getCodigo().getText().equals("") ||
-                opc1.getCity().getText().equals("")){
+                opc1.getCity().getText().equals("") ||
+                opc1.getTipo() == -1){
                 (new ErrorFaltaRellenar()).setVisible(true);
             }
             else {
                 menu.setVisible(true);
                 opc1.setVisible(false);
-                sedes.setSede(opc1.getCodigo().getText(), opc1.getCity().getText());
+                sedes.setSede(opc1.getCodigo().getText(), opc1.getCity().getText(), opc1.getTipo());
                 limpiarOpc1();
             }
             
@@ -301,14 +317,15 @@ public class Conexion implements MouseListener{
             if (opc2.getCodigoS().getText().equals("") ||
                     opc2.getNombre().getText().equals("") ||
                     opc2.getCodigoT().getText().equals("") ||
-                    opc2.getHora().getText().equals("")) {
+                    opc2.getHora().getText().equals("") ||
+                    opc2.getTipo() == -1) {
                 (new ErrorFaltaRellenar()).setVisible(true);
             }
             else {
                 try {
 
                     sedes.setTramite(opc2.getCodigoS().getText(), opc2.getNombre().getText(),
-                            opc2.getCodigoT().getText(), opc2.getHora().getText());
+                            opc2.getCodigoT().getText(), opc2.getHora().getText(), opc2.getTipo());
                     menu.setVisible(true);
                     opc2.setVisible(false);
                     limpiarOpc2();
@@ -320,6 +337,8 @@ public class Conexion implements MouseListener{
                     (new ErrorRangoHorario()).setVisible(true);
                 }catch (SedeNoEncontradaException ex) {
                     (new SedeInexistente()).setVisible(true);
+                } catch (TipoSedeException ex) {
+                    (new ErrorTipoSede()).setVisible(true);
                 }
             }
         }
@@ -453,6 +472,34 @@ public class Conexion implements MouseListener{
             menu.setVisible(true);
             opc7.setVisible(false);
             limpiarOpc7();
+        }
+        
+        // Abre la ventana exportar
+        else if (e.getSource() == menu.getOpc8()) {
+            opc8.setVisible(true);
+            menu.setVisible(false);
+        }
+        //Exporta el archivo o lo intenta
+        else if (e.getSource() == opc8.getExportar()) {
+            try {
+                if(opc8.getTipo() == -1) {
+                    (new ErrorFaltaRellenar()).setVisible(true);
+                }
+                else {
+                    if (opc8.getTipo() == 0) {
+                        exportarSedes(opc8.getCsv().getText());
+                    }
+                    else if (opc8.getTipo() == 1) {
+                        exportarTramites(opc8.getCsv().getText());
+                    }
+                    menu.setVisible(true);
+                    opc8.setVisible(false);
+                    limpiarOpc8();
+                }
+            }
+            catch (TextoVacioException ex) {
+                
+            }
         }
     }
     

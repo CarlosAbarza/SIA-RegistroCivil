@@ -1,5 +1,5 @@
-ubicacionSede,codigoSede
-Algarrobo,7050
-Valparaiso,9035
-ViñadelMar,9045
-Quilpue,8065
+ubicacionSede,codigoSede,Tipo
+Algarrobo,7050,0
+Valparaiso,9035,1
+ViñadelMar,9045,1
+Quilpue,8065.0

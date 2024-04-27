@@ -3,6 +3,7 @@ package modelo;
 import Exceptions.FormatoHoraException;
 import Exceptions.RangoHorarioException;
 import Exceptions.SedeNoEncontradaException;
+import Exceptions.TipoSedeException;
 import java.util.*;
 
 public class OrganizadorSede {
@@ -30,8 +31,14 @@ public class OrganizadorSede {
         return listado.get(i);
     }
     
-    public void setSede(String codigo, String ciudad) {
-        Sede ss = new Sede(codigo, ciudad);
+    public void setSede(String codigo, String ciudad, int tipo) {
+        Sede ss;
+        if (tipo == 0) {
+            ss = new SedeCertificados(codigo, ciudad);
+        }
+        else {
+            ss = new SedeDocumento(codigo, ciudad);
+        }
         mapa.put(codigo, ss);
         listado.add(ss);
     }
@@ -41,12 +48,12 @@ public class OrganizadorSede {
         mapa.put(nuevo.getCodigo(), nuevo);
     }
     
-    public int setTramite(String codigo, Tramite documento) {
+    public int setTramite(String codigo, Tramite documento, int tipo) throws TipoSedeException {
         Sede temp = mapa.get(codigo);
         if (temp == null) {
             return 0;
         }
-        else if (temp.setDocumento(documento)) {
+        else if (temp.setDocumento(documento, tipo)) {
             return 1;
         }
         else {
@@ -54,14 +61,14 @@ public class OrganizadorSede {
         }
     }
     
-    public void setTramite(String codigoS, String nombre, String codigoT, String hora)
-            throws FormatoHoraException, RangoHorarioException, SedeNoEncontradaException {
+    public void setTramite(String codigoS, String nombre, String codigoT, String hora, int tipo)
+            throws FormatoHoraException, RangoHorarioException, SedeNoEncontradaException, TipoSedeException {
         Tramite tt = new Tramite(nombre, codigoT, hora);
         Sede temp = mapa.get(codigoS);
         if (temp == null) {
             throw new SedeNoEncontradaException();
         }
-        temp.setDocumento(tt);
+        temp.setDocumento(tt, tipo);
     }
     
     public Tramite getDocumento(String codigo, int i) {

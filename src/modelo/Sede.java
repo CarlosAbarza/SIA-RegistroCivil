@@ -1,5 +1,6 @@
 package modelo;
 
+import Exceptions.TipoSedeException;
 import Exceptions.TramiteNoEncontradoException;
 import java.time.LocalTime;
 
@@ -49,6 +50,10 @@ public class Sede {
     public void setHoraCierre(String horaCierre) {
         this.horaCierre = LocalTime.parse(horaCierre);
     }
+    
+    public ContenedorTramite getDocumento() {
+        return documento;
+    }
 
     public Tramite getDocumento(int i) {
         return documento.getTramite(i);
@@ -58,7 +63,7 @@ public class Sede {
         return documento.getTramite(codigo);
     }
     
-    public boolean setDocumento(Tramite documento) {
+    public boolean setDocumento(Tramite documento, int tipo) throws TipoSedeException{
         return this.documento.setTramite(documento);
     }
     

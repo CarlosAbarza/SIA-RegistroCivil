@@ -34,6 +34,7 @@
                   <Component id="agregarTramite" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="listarTramitesDeSede" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="listarSedesTramite" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="expCsv" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="72" max="32767" attributes="0"/>
           </Group>
@@ -58,7 +59,9 @@
               <Component id="elimTram" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="buscarRango" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="expCsv" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,6 +111,11 @@
     <Component class="javax.swing.JButton" name="buscarRango">
       <Properties>
         <Property name="text" type="java.lang.String" value="7. Tramites realizados en rango de tiempo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="expCsv">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="8. Exportar a un CSV"/>
       </Properties>
     </Component>
   </SubComponents>
