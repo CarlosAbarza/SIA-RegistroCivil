@@ -226,13 +226,13 @@ public class Conexion implements MouseListener{
         if (!opc5.getFecha().getText().equals("")) {
             tt.setHora(opc5.getFecha().getText());
         }
-        else if (!opc5.getNombre().getText().equals("")) {
+        if (!opc5.getNombre().getText().equals("")) {
             tt.setNombre(opc5.getNombre().getText());
         }
-        else {
+        else  if (opc5.getFecha().getText().equals("") && 
+                opc5.getNombre().getText().equals("")){
             throw new TextoVacioException();
         }
-        
     }
     
     public void eliminarOpc6() throws SedeNoEncontradaException, 
