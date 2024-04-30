@@ -4,6 +4,8 @@
  */
 package visual;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -38,6 +40,7 @@ public class RangoTiempo extends javax.swing.JFrame {
         buscar = new javax.swing.JButton();
         volver = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        now = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +57,13 @@ public class RangoTiempo extends javax.swing.JFrame {
         volver.setText("Volver");
 
         jLabel3.setText("(No se incluyen los extremos)");
+
+        now.setText("Usar hora actual");
+        now.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nowActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,14 +85,17 @@ public class RangoTiempo extends javax.swing.JFrame {
                                 .addComponent(inicio)
                                 .addComponent(cierre, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(167, 167, 167)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(volver)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buscar)))))
+                            .addComponent(now))))
                 .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buscar)
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,11 +109,13 @@ public class RangoTiempo extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(cierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(now)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscar)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(volver)
                 .addContainerGap())
@@ -108,6 +123,13 @@ public class RangoTiempo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nowActionPerformed
+        // TODO add your handling code here:
+        LocalDateTime aux = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        cierre.setText(aux.format(formatter).toString());
+    }//GEN-LAST:event_nowActionPerformed
 
     public JTextField getInicio() {
         return inicio;
@@ -186,6 +208,7 @@ public class RangoTiempo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea lista;
+    private javax.swing.JButton now;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
