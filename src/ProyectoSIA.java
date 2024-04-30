@@ -1,5 +1,8 @@
 // <<<<<<< HEAD
+import Exceptions.TextoVacioException;
 import controlador.Conexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import visual.*;
 
 
@@ -17,5 +20,16 @@ public class ProyectoSIA {
         
         
         Conexion cc = new Conexion(mm, opc1, opc2, opc3, opc4, opc5, opc6, opc7, opc8);
+        
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                try {
+                    cc.exportarSedes("SedesTermino");
+                    cc.exportarTramites("TramitesTermino");
+                }
+                catch (TextoVacioException e) {
+                }
+            }
+        });
     }
 }

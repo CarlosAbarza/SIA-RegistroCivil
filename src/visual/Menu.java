@@ -39,6 +39,7 @@ public class Menu extends javax.swing.JFrame {
         elimTram = new javax.swing.JButton();
         buscarRango = new javax.swing.JButton();
         expCsv = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +67,8 @@ public class Menu extends javax.swing.JFrame {
 
         expCsv.setText("8. Exportar a un CSV");
 
+        exit.setText("Salir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,16 +76,22 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 71, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(modTram)
-                    .addComponent(elimTram)
-                    .addComponent(buscarRango)
-                    .addComponent(jLabel1)
-                    .addComponent(agregarSede)
-                    .addComponent(agregarTramite)
-                    .addComponent(listarTramitesDeSede)
-                    .addComponent(listarSedesTramite)
-                    .addComponent(expCsv))
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(exit)
+                        .addGap(26, 26, 26))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(modTram)
+                            .addComponent(elimTram)
+                            .addComponent(buscarRango)
+                            .addComponent(jLabel1)
+                            .addComponent(agregarSede)
+                            .addComponent(agregarTramite)
+                            .addComponent(listarTramitesDeSede)
+                            .addComponent(listarSedesTramite)
+                            .addComponent(expCsv))
+                        .addContainerGap(72, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +114,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(buscarRango)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(expCsv)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exit)
+                .addContainerGap())
         );
 
         pack();
@@ -145,6 +156,10 @@ public class Menu extends javax.swing.JFrame {
     
     public JButton getOpc8(){
         return expCsv;
+    }
+    
+    public JButton getExit() {
+        return exit;
     }
     
     /**
@@ -187,6 +202,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton agregarTramite;
     private javax.swing.JButton buscarRango;
     private javax.swing.JButton elimTram;
+    private javax.swing.JButton exit;
     private javax.swing.JButton expCsv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listarSedesTramite;

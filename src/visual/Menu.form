@@ -26,17 +26,26 @@
           <Group type="102" attributes="0">
               <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="modTram" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="elimTram" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="buscarRango" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="agregarSede" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="agregarTramite" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="listarTramitesDeSede" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="listarSedesTramite" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="expCsv" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="exit" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="modTram" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="elimTram" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="buscarRango" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="agregarSede" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="agregarTramite" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="listarTramitesDeSede" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="listarSedesTramite" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="expCsv" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="72" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,7 +70,9 @@
               <Component id="buscarRango" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="expCsv" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="exit" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,6 +127,11 @@
     <Component class="javax.swing.JButton" name="expCsv">
       <Properties>
         <Property name="text" type="java.lang.String" value="8. Exportar a un CSV"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="exit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
     </Component>
   </SubComponents>

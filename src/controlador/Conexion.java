@@ -6,10 +6,13 @@ package controlador;
 
 import visual.PestañasErrores.*;
 import Exceptions.*;
+import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import modelo.*;
 import visual.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -57,10 +60,13 @@ public class Conexion implements MouseListener{
         this.menu.getOpc6().addMouseListener(this);
         this.menu.getOpc7().addMouseListener(this);
         this.menu.getOpc8().addMouseListener(this);
+        this.menu.getExit().addMouseListener(this);
         
         
         this.opc1.getAcept().addMouseListener(this);
+        this.opc1.getCancel().addMouseListener(this);
         this.opc2.getAcept().addMouseListener(this);
+        this.opc2.getCancel().addMouseListener(this);
         this.opc3.getBuscar().addMouseListener(this);
         this.opc3.getVolver().addMouseListener(this);
         this.opc4.getVolver().addMouseListener(this);
@@ -71,6 +77,7 @@ public class Conexion implements MouseListener{
         this.opc7.getBuscar().addMouseListener(this);
         this.opc7.getVolver().addMouseListener(this);
         this.opc8.getExportar().addMouseListener(this);
+        this.opc8.getCancel().addMouseListener(this);
         
         
         try {
@@ -101,22 +108,34 @@ public class Conexion implements MouseListener{
             
         }
         
+        /*addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    exportarSedes("PruebaS");
+                    exportarTramites("PruebaT");
+                } catch (TextoVacioException ex) {
+                    
+                }
+            }
+        });*/
+        
         this.menu.setVisible(true);
     }
     
     //Funciones de exportar CSV
     public void exportarSedes(String rutaArchivo) throws TextoVacioException {
-        if (opc8.getCsv().getText().equals("")) {
+        if (rutaArchivo.equals("")) {
             throw new TextoVacioException();
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
-            writer.write("codigoSede,ciudad");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo + ".csv"))) {
+            writer.write("codigoSede,ciudad,tipo");
             writer.newLine();
             
             for (int i = 0; i < sedes.getCantidadSede(); i++) {
                 Sede sede = sedes.getSede(i);
                 System.out.println(sedes);
-                writer.write(sede.getCodigo() + "," + sede.getCiudad());
+                writer.write(sede.getCodigo() + "," + sede.getCiudad() + "," + sede.getTipo());
                 writer.newLine(); 
             }
         } catch (IOException e) {
@@ -124,16 +143,20 @@ public class Conexion implements MouseListener{
         }
     }
     
-    public void exportarTramites(String rutaArchivo){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))){
-            writer.write("codigoTramite,nombreTramite,hora,codigoSede");
+    public void exportarTramites(String rutaArchivo) throws TextoVacioException{
+        if (rutaArchivo.equals("")) {
+            throw new TextoVacioException();
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo + ".csv"))){
+            writer.write("codigoTramite,nombreTramite,hora,codigoSede,tipo");
             writer.newLine();
 
             for (int i = 0; i < sedes.getCantidadSede(); i++) {
                 Sede sede = sedes.getSede(i);
                 for (int j = 0; j < sede.getCantDocumento(); j++) {
                     Tramite tramite = sede.getDocumento(j);
-                    writer.write(tramite.getCodigo() + "," + tramite.getNombre() + "," + tramite.getHora() + "," + sede.getCodigo());
+                    writer.write(tramite.getCodigo() + "," + tramite.getNombre() + "," + tramite.getHora() + "," + sede.getCodigo() + "," + sede.getTipo());
                     writer.newLine();
                 }
             }
@@ -306,6 +329,11 @@ public class Conexion implements MouseListener{
             }
             
         }
+        // Cancela la operacion
+        else if (e.getSource() == opc1.getCancel()) {
+            menu.setVisible(true);
+            opc1.setVisible(false);
+        }
         
         // Abre la ventana para agregar Tramite
         else if (e.getSource() == menu.getOpc2()) {
@@ -341,6 +369,11 @@ public class Conexion implements MouseListener{
                     (new ErrorTipoSede()).setVisible(true);
                 }
             }
+        }
+        // Cancela la operacion
+        else if (e.getSource() == opc2.getCancel()) {
+            menu.setVisible(true);
+            opc2.setVisible(false);
         }
         
         // Abre la ventana para listar los Tramites de una Sede
@@ -501,6 +534,25 @@ public class Conexion implements MouseListener{
                 
             }
         }
+        // Vuelve al menu
+        else if (e.getSource() == opc8.getCancel()) {
+            menu.setVisible(true);
+            opc8.setVisible(false);
+        }
+        
+        // Termina la ejecucion del programa
+        else if (e.getSource() == menu.getExit()) {
+            try {
+                exportarSedes("SedesTermino");
+                exportarTramites("TramitesTermino");
+                System.exit(0);
+            }
+            catch (TextoVacioException ex) {
+                System.out.println("Error");
+            }
+            
+        }
+        
     }
     
     @Override

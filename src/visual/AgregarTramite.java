@@ -41,6 +41,7 @@ public class AgregarTramite extends javax.swing.JFrame {
         acept = new javax.swing.JButton();
         tipo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,12 +68,14 @@ public class AgregarTramite extends javax.swing.JFrame {
 
         jLabel6.setText("Tipo de Tramite: ");
 
+        cancel.setText("Cancelar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -95,7 +98,9 @@ public class AgregarTramite extends javax.swing.JFrame {
                                     .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(27, 27, 27)
+                        .addComponent(cancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(acept)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -125,7 +130,9 @@ public class AgregarTramite extends javax.swing.JFrame {
                     .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(8, 8, 8)
-                .addComponent(acept)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acept)
+                    .addComponent(cancel))
                 .addGap(38, 38, 38))
         );
 
@@ -180,6 +187,10 @@ public class AgregarTramite extends javax.swing.JFrame {
         tipo.setSelectedIndex(i);
     }
     
+    public JButton getCancel() {
+        return cancel;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -217,6 +228,7 @@ public class AgregarTramite extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acept;
+    private javax.swing.JButton cancel;
     private javax.swing.JTextField codigoS;
     private javax.swing.JTextField codigoT;
     private javax.swing.JTextField hora;

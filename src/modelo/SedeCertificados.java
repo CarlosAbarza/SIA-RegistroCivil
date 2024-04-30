@@ -11,9 +11,15 @@ import Exceptions.TipoSedeException;
  * @author carlo
  */
 public class SedeCertificados extends Sede{
+    private int tipo;
     
     public SedeCertificados(String codigo, String ciudad) {
         super(codigo, ciudad);
+        tipo = 0;
+    }
+    @Override
+    public int getTipo() {
+        return tipo;
     }
     
     @Override

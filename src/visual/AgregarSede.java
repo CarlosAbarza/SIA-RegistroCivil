@@ -32,6 +32,7 @@ public class AgregarSede extends javax.swing.JFrame {
         acept = new javax.swing.JButton();
         tipo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,12 +61,16 @@ public class AgregarSede extends javax.swing.JFrame {
 
         jLabel4.setText("Que tipo de Tramite realiza");
 
+        cancel.setText("Cancelar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
+                .addComponent(cancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(acept)
                 .addGap(59, 59, 59))
             .addGroup(layout.createSequentialGroup()
@@ -106,11 +111,13 @@ public class AgregarSede extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(acept)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acept)
+                    .addComponent(cancel))
                 .addGap(38, 38, 38))
         );
 
@@ -153,6 +160,10 @@ public class AgregarSede extends javax.swing.JFrame {
         tipo.setSelectedIndex(i);
     }
     
+    public JButton getCancel() {
+        return cancel;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -190,6 +201,7 @@ public class AgregarSede extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acept;
+    private javax.swing.JButton cancel;
     private javax.swing.JTextField city;
     private javax.swing.JTextField codigo;
     private javax.swing.JLabel jLabel1;

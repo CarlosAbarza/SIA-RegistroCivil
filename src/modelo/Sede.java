@@ -74,4 +74,8 @@ public class Sede {
     public void eliminarDocumento(String codigo) throws TramiteNoEncontradoException {
         documento.eliminarDocumento(codigo);
     }
+    
+    public int getTipo() {
+        return -1;
+    }
 }
