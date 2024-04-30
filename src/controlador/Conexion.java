@@ -82,7 +82,7 @@ public class Conexion implements MouseListener{
         
         try {
             // Precarga de datos
-            CSV csv = new CSV("sedes");
+            CSV csv = new CSV("ubicacionSede");
             String linea;
             csv.firstLine();
             while ((linea = csv.nextLine()) != null) {
@@ -90,13 +90,12 @@ public class Conexion implements MouseListener{
                 sedes.setSede(elem[1], elem[0], Integer.parseInt(elem[2]));
             }
 
-            csv = new CSV("tramitesPrecargados");
+            csv = new CSV("codigoTramite");
             csv.firstLine();
             while ((linea = csv.nextLine()) != null) {
                 String[] elem = linea.split(",");
                 sedes.setTramite(elem[3], new Tramite(elem[1], elem[0], elem[2]), Integer.parseInt(elem[4]));
             }
-            
         } 
         catch(FileNotFoundException e) {
             System.out.println("Archivo no encontrado");
@@ -105,20 +104,8 @@ public class Conexion implements MouseListener{
             System.out.println("Error al leer");
         }
         catch (FormatoHoraException | RangoHorarioException | TipoSedeException e){
-            
+            System.out.println("Error en los datos creados");
         }
-        
-        /*addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                try {
-                    exportarSedes("PruebaS");
-                    exportarTramites("PruebaT");
-                } catch (TextoVacioException ex) {
-                    
-                }
-            }
-        });*/
         
         this.menu.setVisible(true);
     }
@@ -134,7 +121,7 @@ public class Conexion implements MouseListener{
             
             for (int i = 0; i < sedes.getCantidadSede(); i++) {
                 Sede sede = sedes.getSede(i);
-                System.out.println(sedes);
+//                System.out.println(sedes);
                 writer.write(sede.getCodigo() + "," + sede.getCiudad() + "," + sede.getTipo());
                 writer.newLine(); 
             }

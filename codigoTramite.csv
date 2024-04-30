@@ -1,0 +1,24 @@
+﻿codigoTramite,nombreTramite,hora,codigoSede,Tipo
+520,CedulaIdentidad,2024-04-24T08:30:00,7050,0
+220,Nacimiento,2024-04-24T08:45:00,9035,1
+520,CedulaIdentidad,2024-04-24T09:00:00,9045,1
+650,MatrimonioCivil,2024-04-24T09:15:00,8065,0
+650,MatrimonioCivil,2024-04-24T09:30:00,7010,1
+221,Defunciones - Asignación,2024-04-24T09:45:00,8500,1
+222,Defunciones - Causa,2024-04-24T10:00:00,6000,0
+223,Defunciones - Todo,2024-04-24T10:15:00,9500,1
+224,Antecedentes - Fines Especiales,2024-04-24T10:30:00,8010,0
+225,Antecedentes - Fines Particulares,2024-04-24T10:45:00,8300,1
+226,Antecedentes - Hoja de Conductor,2024-04-24T11:00:00,7500,0
+227,Discapacidad - Certificado,2024-04-24T11:15:00,8700,1
+228,Acuerdo Unión Civil - Todo,2024-04-24T11:30:00,6200,0
+229,Persona Jurídica - Directorio,2024-04-24T11:45:00,9100,1
+230,Persona Jurídica - Vigencia,2024-04-24T12:00:00,8400,0
+231,Defunciones - Certificado,2024-04-24T12:15:00,8600,1
+232,Defunciones - Causa,2024-04-24T12:30:00,8000,0
+233,Defunciones - Todo,2024-04-24T12:45:00,8200,1
+234,Antecedentes - Fines Especiales,2024-04-24T13:00:00,7900,0
+235,Antecedentes - Fines Particulares,2024-04-24T13:15:00,7000,1
+236,Antecedentes - Hoja de Conductor,2024-04-24T13:30:00,8100,0
+237,Discapacidad - Certificado,2024-04-24T13:45:00,9400,1
+238,Acuerdo Unión Civil - Todo,2024-04-24T14:00:00,8800,0
